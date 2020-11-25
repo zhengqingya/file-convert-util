@@ -1,4 +1,4 @@
-package com.zhengqing.demo.word2Jpeg;
+package com.zhengqing.demo.word2Img;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Word2JpegUtil {
 
     /**
-     * word 转 jpeg 【注： 需`aspose-words`包】
+     * word 转 jpeg
      *
      * @param wordBytes:
      *            word字节码数据

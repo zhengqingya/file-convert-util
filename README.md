@@ -8,6 +8,7 @@
 4. `html` 转 `pdf`
 5. `excel` 转 `pdf`
 6. `word` 转 `jpeg`
+7. `word` 转 `png`
 
 ### 二、项目地址
 

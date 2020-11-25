@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Htm2WordlUtil {
 
     /**
-     * html 转 word 【注： 需`aspose-words`包】
+     * html 转 word
      *
      * @param htmlBytes:
      *            html字节码

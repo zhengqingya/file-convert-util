@@ -9,7 +9,8 @@ import com.zhengqing.demo.excel2pdf.Excel2PdfUtil;
 import com.zhengqing.demo.html2pdf.Html2PdfUtil;
 import com.zhengqing.demo.html2word.Htm2WordlUtil;
 import com.zhengqing.demo.utils.MyFileUtil;
-import com.zhengqing.demo.word2Jpeg.Word2JpegUtil;
+import com.zhengqing.demo.word2Img.Word2JpegUtil;
+import com.zhengqing.demo.word2Img.Word2PngUtil;
 import com.zhengqing.demo.word2html.Word2HtmlUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -121,7 +122,27 @@ public class MyFileConvertUtil {
         List<File> fileList = Lists.newArrayList();
         List<byte[]> jpegList = Word2JpegUtil.word2Jpeg(wordBytes);
         for (int i = 0; i < jpegList.size(); i++) {
-            fileList.add(MyFileUtil.writeFileContent(jpegList.get(i), imgPath + "/" + i + ".jpg"));
+            fileList.add(MyFileUtil.writeFileContent(jpegList.get(i), imgPath + "/" + (i + 1) + ".jpg"));
+        }
+        return fileList;
+    }
+
+    /**
+     * `word` 转 `png`
+     *
+     * @param wordBytes:
+     *            word字节码数据
+     * @param imgPath:
+     *            生成图片路径
+     * @return: 图片字节码数据列表
+     * @author : zhengqing
+     * @date : 2020/11/24 11:52
+     */
+    public static List<File> word2Png(byte[] wordBytes, String imgPath) {
+        List<File> fileList = Lists.newArrayList();
+        List<byte[]> pngList = Word2PngUtil.word2Png(wordBytes);
+        for (int i = 0; i < pngList.size(); i++) {
+            fileList.add(MyFileUtil.writeFileContent(pngList.get(i), imgPath + "/" + (i + 1) + ".png"));
         }
         return fileList;
     }

@@ -47,7 +47,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Word2HtmlUtil {
 
     /**
-     * word 转 html 【注： 需`aspose-words`包】
+     * word 转 html
      *
      * @param wordFile:
      *            word文件信息
@@ -67,7 +67,7 @@ public class Word2HtmlUtil {
     }
 
     /**
-     * word 转 html 【注： 需`aspose-words`包】 FIXME 此方式暂不支持！！！
+     * word 转 html FIXME 此方式暂不支持！！！
      *
      * @param data:
      *            html字节码
