@@ -2,12 +2,10 @@ package com.zhengqing.demo.word2Jpeg;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.List;
 
 import com.aspose.words.Document;
 import com.aspose.words.ImageSaveOptions;
-import com.aspose.words.License;
 import com.aspose.words.SaveFormat;
 import com.google.common.collect.Lists;
 
@@ -37,7 +35,6 @@ public class Word2JpegUtil {
      */
     @SneakyThrows(Exception.class)
     public static List<byte[]> word2Jpeg(byte[] wordBytes) {
-        matchWordLicense();
         Document doc = new Document(new ByteArrayInputStream(wordBytes));
         ImageSaveOptions iso = new ImageSaveOptions(SaveFormat.JPEG);
         iso.setResolution(128);
@@ -53,19 +50,6 @@ public class Word2JpegUtil {
         }
 
         return jpegList;
-    }
-
-    /**
-     * 实现匹配文件授权 -> 去掉头部水印 `Evaluation Only. Created with Aspose.Words. Copyright 2003-2018 Aspose Pty Ltd.`
-     *
-     * @author : zhengqing
-     * @date : 2020/11/24 15:44
-     */
-    @SneakyThrows(Exception.class)
-    public static void matchWordLicense() {
-        InputStream is = Word2JpegUtil.class.getClassLoader().getResourceAsStream("license.xml");
-        License wordLicense = new License();
-        wordLicense.setLicense(is);
     }
 
 }

@@ -4,7 +4,12 @@ import java.io.File;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import com.aspose.words.Document;
+import com.aspose.words.SaveFormat;
 import com.youbenzi.md2.export.FileFactory;
 import com.zhengqing.demo.config.Constants;
 import com.zhengqing.demo.utils.MyFileUtil;
@@ -18,7 +23,8 @@ import com.zhengqing.demo.utils.MyFileUtil;
  * @description :
  * @date : 2020/7/10$ 11:02$
  */
-
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class AppTest {
 
     private final String WORD_FILE_PATH = Constants.DEFAULT_FOLDER_TMP + "/test.doc";
@@ -26,10 +32,18 @@ public class AppTest {
     private final String EXCEL_FILE_PATH = Constants.DEFAULT_FOLDER_TMP + "/test.xlsx";
     private final String MD_FILE_PATH = Constants.DEFAULT_FOLDER_TMP + "/test.md";
 
-    @Test // 【 https://gitee.com/cevin15/MD2File 】 【 注：转换格式不是太完善，存在一定问题！ 】
-    public void markdown2Html() throws Exception {
-        FileFactory.produce(new File(MD_FILE_PATH), Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-md.html");
+    @Test
+    public void testData() throws Exception {
+        // load the file to be converted
+        Document wpd = new Document(WORD_FILE_PATH);
+        // convert doc to docx, PDF , HTML , PNG
+        wpd.save(Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.docx", SaveFormat.DOCX);
+        wpd.save(Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.pdf", SaveFormat.PDF);
+        wpd.save(Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.html", SaveFormat.HTML);
+        wpd.save(Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.png", SaveFormat.PNG);
     }
+
+    // ================================ ↓↓↓↓↓↓ 下面为自定义封装过的api ↓↓↓↓↓↓ ===================================
 
     @Test
     public void testWord2Html() throws Exception {
@@ -71,6 +85,11 @@ public class AppTest {
         byte[] wordFileBytes = MyFileUtil.readBytes(WORD_FILE_PATH);
         List<File> jpgFileList = MyFileConvertUtil.word2Jpeg(wordFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
         System.out.println(jpgFileList);
+    }
+
+    @Test // 【 https://gitee.com/cevin15/MD2File 】 【 注：转换格式不是太完善，存在一定问题！ 】
+    public void testMarkdown2Html() throws Exception {
+        FileFactory.produce(new File(MD_FILE_PATH), Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-md.html");
     }
 
 }

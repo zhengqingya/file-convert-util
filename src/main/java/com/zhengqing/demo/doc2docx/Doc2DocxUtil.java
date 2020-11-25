@@ -2,10 +2,8 @@ package com.zhengqing.demo.doc2docx;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 
 import com.aspose.words.Document;
-import com.aspose.words.License;
 import com.aspose.words.SaveFormat;
 
 import lombok.SneakyThrows;
@@ -13,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
- * Doc 转 Docx 工具类 【注： 需`aspose-words`包】
+ * Doc 转 Docx 工具类
  * </p>
  *
  * @author : zhengqing
@@ -34,7 +32,6 @@ public class Doc2DocxUtil {
      */
     @SneakyThrows(Exception.class)
     public static byte[] doc2Docx(byte[] data) {
-        Doc2DocxUtil.matchWordLicense();
         Document document = new Document(new ByteArrayInputStream(data));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         document.save(outputStream, SaveFormat.DOCX);
@@ -56,7 +53,6 @@ public class Doc2DocxUtil {
      */
     @SneakyThrows(Exception.class)
     public static String doc2Docx(String fileRootPath, String wordFileName, String wordFileNameNew) {
-        Doc2DocxUtil.matchWordLicense();
         // word 文件路径
         final String wordFilePath = fileRootPath + "/" + wordFileName;
         final String wordFilePathNew = fileRootPath + "/" + wordFileNameNew;
@@ -65,19 +61,6 @@ public class Doc2DocxUtil {
         document.save(wordFilePathNew);
         // 返回生成的`docx`文件路径
         return wordFilePathNew;
-    }
-
-    /**
-     * 实现匹配文件授权 -> 去掉头部水印 `Evaluation Only. Created with Aspose.Words. Copyright 2003-2018 Aspose Pty Ltd.`
-     *
-     * @author : zhengqing
-     * @date : 2020/11/24 15:44
-     */
-    @SneakyThrows(Exception.class)
-    public static void matchWordLicense() {
-        InputStream is = Doc2DocxUtil.class.getClassLoader().getResourceAsStream("license.xml");
-        License wordLicense = new License();
-        wordLicense.setLicense(is);
     }
 
 }

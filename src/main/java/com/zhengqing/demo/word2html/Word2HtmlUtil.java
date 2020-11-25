@@ -27,7 +27,6 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.util.CollectionUtils;
 import org.w3c.dom.Document;
 
-import com.aspose.words.License;
 import com.aspose.words.SaveFormat;
 import com.zhengqing.demo.config.Constants;
 import com.zhengqing.demo.utils.MyFileUtil;
@@ -60,7 +59,6 @@ public class Word2HtmlUtil {
      */
     @SneakyThrows(Exception.class)
     public static File word2Html(File wordFile, String htmlFilePath) {
-        Word2HtmlUtil.matchWordLicense();
         // Load word document from disk.
         com.aspose.words.Document doc = new com.aspose.words.Document(wordFile.getAbsolutePath());
         // Save the document into MHTML.
@@ -79,7 +77,6 @@ public class Word2HtmlUtil {
      */
     @SneakyThrows(Exception.class)
     public static byte[] word2Html(byte[] data) {
-        Word2HtmlUtil.matchWordLicense();
         String tmpFilePath = MyFileUtil
             .writeFileContent(data, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/" + System.currentTimeMillis() + ".doc")
             .getAbsolutePath();
@@ -88,19 +85,6 @@ public class Word2HtmlUtil {
         doc.save(outputStream, SaveFormat.HTML);
         MyFileUtil.deleteFileOrFolder(tmpFilePath);
         return outputStream.toByteArray();
-    }
-
-    /**
-     * 实现匹配文件授权 -> 去掉头部水印 `Evaluation Only. Created with Aspose.Words. Copyright 2003-2018 Aspose Pty Ltd.`
-     *
-     * @author : zhengqing
-     * @date : 2020/11/24 15:44
-     */
-    @SneakyThrows(Exception.class)
-    public static void matchWordLicense() {
-        InputStream is = Word2HtmlUtil.class.getClassLoader().getResourceAsStream("license.xml");
-        License wordLicense = new License();
-        wordLicense.setLicense(is);
     }
 
     // ================================= ↓↓↓↓↓↓ 【 注：下面方式会丢失一定格式 】 ↓↓↓↓↓↓ ==================================

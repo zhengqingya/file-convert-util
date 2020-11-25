@@ -3,7 +3,6 @@ package com.zhengqing.demo.html2word;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 
 import org.apache.poi.poifs.filesystem.DirectoryEntry;
 import org.apache.poi.poifs.filesystem.DocumentEntry;
@@ -11,7 +10,6 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import com.aspose.words.Document;
 import com.aspose.words.DocumentBuilder;
-import com.aspose.words.License;
 import com.aspose.words.SaveFormat;
 
 import lombok.SneakyThrows;
@@ -40,26 +38,12 @@ public class Htm2WordlUtil {
      */
     @SneakyThrows(Exception.class)
     public static byte[] html2Word(byte[] htmlBytes) {
-        Htm2WordlUtil.matchWordLicense();
         Document doc = new Document();
         DocumentBuilder builder = new DocumentBuilder(doc);
         builder.insertHtml(new String(htmlBytes));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         doc.save(outputStream, SaveFormat.DOCX);
         return outputStream.toByteArray();
-    }
-
-    /**
-     * 实现匹配文件授权 -> 去掉头部水印 `Evaluation Only. Created with Aspose.Words. Copyright 2003-2018 Aspose Pty Ltd.`
-     *
-     * @author : zhengqing
-     * @date : 2020/11/24 15:44
-     */
-    @SneakyThrows(Exception.class)
-    public static void matchWordLicense() {
-        InputStream is = Htm2WordlUtil.class.getClassLoader().getResourceAsStream("license.xml");
-        License wordLicense = new License();
-        wordLicense.setLicense(is);
     }
 
     /**
