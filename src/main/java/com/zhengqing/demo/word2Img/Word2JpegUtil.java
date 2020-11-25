@@ -2,6 +2,7 @@ package com.zhengqing.demo.word2Img;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.List;
 
 import com.aspose.words.Document;
@@ -25,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Word2JpegUtil {
 
     /**
-     * word 转 jpeg
+     * `word` 转 `jpeg`
      *
      * @param wordBytes:
      *            word字节码数据
@@ -47,6 +48,36 @@ public class Word2JpegUtil {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             doc.save(outputStream, iso);
             jpegList.add(outputStream.toByteArray());
+        }
+
+        return jpegList;
+    }
+
+    /**
+     * `word` 转 `jpeg`
+     *
+     * @param wordBytes:
+     *            word字节码数据
+     * @param imgRootPath:
+     *            生成图片根路径
+     * @return: 图片文件数据列表
+     * @author : zhengqing
+     * @date : 2020/11/24 11:52
+     */
+    @SneakyThrows(Exception.class)
+    public static List<File> word2Jpeg(byte[] wordBytes, String imgRootPath) {
+        Document doc = new Document(new ByteArrayInputStream(wordBytes));
+        ImageSaveOptions iso = new ImageSaveOptions(SaveFormat.JPEG);
+        iso.setResolution(128);
+        iso.setPrettyFormat(true);
+        iso.setUseAntiAliasing(true);
+
+        List<File> jpegList = Lists.newArrayList();
+        for (int i = 0; i < doc.getPageCount(); i++) {
+            String imgPath = imgRootPath + "/" + (i + 1) + ".jpg";
+            iso.setPageIndex(i);
+            doc.save(imgPath, iso);
+            jpegList.add(new File(imgPath));
         }
 
         return jpegList;

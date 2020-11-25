@@ -2,6 +2,7 @@ package com.zhengqing.demo.doc2docx;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 import com.aspose.words.Document;
 import com.aspose.words.SaveFormat;
@@ -22,24 +23,42 @@ import lombok.extern.slf4j.Slf4j;
 public class Doc2DocxUtil {
 
     /**
-     * 将`doc`格式转换成`docx`
+     * `doc` 转 `docx`
      *
-     * @param data:
+     * @param docBytes:
      *            doc文件字节码
      * @return: 生成的`docx`文件字节码
      * @author : zhengqing
      * @date : 2020/11/24 11:26
      */
     @SneakyThrows(Exception.class)
-    public static byte[] doc2Docx(byte[] data) {
-        Document document = new Document(new ByteArrayInputStream(data));
+    public static byte[] doc2Docx(byte[] docBytes) {
+        Document document = new Document(new ByteArrayInputStream(docBytes));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         document.save(outputStream, SaveFormat.DOCX);
         return outputStream.toByteArray();
     }
 
     /**
-     * 将`doc`格式转换成`docx`
+     * `doc` 转 `docx`
+     *
+     * @param docBytes:
+     *            doc文件字节码
+     * @param docxFilePath:
+     *            docx文件路径
+     * @return: 生成的`docx`文件数据
+     * @author : zhengqing
+     * @date : 2020/11/24 11:26
+     */
+    @SneakyThrows(Exception.class)
+    public static File doc2Docx(byte[] docBytes, String docxFilePath) {
+        Document document = new Document(new ByteArrayInputStream(docBytes));
+        document.save(docxFilePath, SaveFormat.DOCX);
+        return new File(docxFilePath);
+    }
+
+    /**
+     * `doc` 转 `docx`
      *
      * @param fileRootPath:
      *            文件根位置

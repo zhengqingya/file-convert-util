@@ -1,11 +1,13 @@
 package com.zhengqing.demo.word2html;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -47,10 +49,32 @@ import lombok.extern.slf4j.Slf4j;
 public class Word2HtmlUtil {
 
     /**
-     * word 转 html
+     * `word` 转 `html`
      *
-     * @param wordFile:
-     *            word文件信息
+     * @param wordBytes:
+     *            word字节码
+     * @return: html文件字节码数据
+     * @author : zhengqing
+     * @date : 2020/11/24 11:52
+     */
+    @SneakyThrows(Exception.class)
+    public static byte[] word2Html(byte[] wordBytes) {
+        // 创建临时word转html后生成的html文件
+        String tmpHtmlFilePath =
+            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/" + System.currentTimeMillis() + "-" + getUUID32() + ".html";
+        com.aspose.words.Document doc = new com.aspose.words.Document(new ByteArrayInputStream(wordBytes));
+        doc.save(tmpHtmlFilePath, SaveFormat.HTML);
+        byte[] htmlBytes = MyFileUtil.readBytes(tmpHtmlFilePath);
+        // 删除临时word文件
+        MyFileUtil.deleteFileOrFolder(tmpHtmlFilePath);
+        return htmlBytes;
+    }
+
+    /**
+     * `word` 转 `html`
+     *
+     * @param wordBytes:
+     *            word字节码
      * @param htmlFilePath:
      *            html文件路径
      * @return: html文件数据
@@ -58,33 +82,23 @@ public class Word2HtmlUtil {
      * @date : 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
-    public static File word2Html(File wordFile, String htmlFilePath) {
+    public static File word2Html(byte[] wordBytes, String htmlFilePath) {
         // Load word document from disk.
-        com.aspose.words.Document doc = new com.aspose.words.Document(wordFile.getAbsolutePath());
+        com.aspose.words.Document doc = new com.aspose.words.Document(new ByteArrayInputStream(wordBytes));
         // Save the document into MHTML.
         doc.save(htmlFilePath, SaveFormat.HTML);
         return new File(htmlFilePath);
     }
 
     /**
-     * word 转 html FIXME 此方式暂不支持！！！
+     * 获取32位的uuid
      *
-     * @param data:
-     *            html字节码
-     * @return: html文件字节码数据
+     * @return: java.lang.String
      * @author : zhengqing
-     * @date : 2020/11/24 11:52
+     * @date : 2020/11/25 13:55
      */
-    @SneakyThrows(Exception.class)
-    public static byte[] word2Html(byte[] data) {
-        String tmpFilePath = MyFileUtil
-            .writeFileContent(data, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/" + System.currentTimeMillis() + ".doc")
-            .getAbsolutePath();
-        com.aspose.words.Document doc = new com.aspose.words.Document(tmpFilePath);
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        doc.save(outputStream, SaveFormat.HTML);
-        MyFileUtil.deleteFileOrFolder(tmpFilePath);
-        return outputStream.toByteArray();
+    private static String getUUID32() {
+        return UUID.randomUUID().toString().replace("-", "").toLowerCase();
     }
 
     // ================================= ↓↓↓↓↓↓ 【 注：下面方式会丢失一定格式 】 ↓↓↓↓↓↓ ==================================
@@ -197,7 +211,7 @@ public class Word2HtmlUtil {
     }
 
     /**
-     * word 转 html
+     * `word` 转 `html`
      *
      * @param fileRootPath:
      *            文件根位置
@@ -220,7 +234,7 @@ public class Word2HtmlUtil {
     }
 
     /**
-     * word 转 html
+     * `word` 转 `html`
      *
      * @param fileRootPath:
      *            文件根位置

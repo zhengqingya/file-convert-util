@@ -3,16 +3,15 @@ package com.zhengqing.demo;
 import java.io.File;
 import java.util.List;
 
-import com.google.common.collect.Lists;
 import com.zhengqing.demo.doc2docx.Doc2DocxUtil;
 import com.zhengqing.demo.excel2pdf.Excel2PdfUtil;
 import com.zhengqing.demo.html2pdf.Html2PdfUtil;
 import com.zhengqing.demo.html2word.Htm2WordlUtil;
-import com.zhengqing.demo.utils.MyFileUtil;
 import com.zhengqing.demo.word2Img.Word2JpegUtil;
 import com.zhengqing.demo.word2Img.Word2PngUtil;
 import com.zhengqing.demo.word2html.Word2HtmlUtil;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -30,32 +29,70 @@ public class MyFileConvertUtil {
     /**
      * `word` 转 `html`
      *
-     * @param wordFile:
-     *            word文件信息
+     * @param wordBytes:
+     *            word字节码
+     * @return: html文件字节码数据
+     * @author : zhengqing
+     * @date : 2020/11/23 16:21
+     */
+    public static byte[] word2Html(byte[] wordBytes) {
+        return Word2HtmlUtil.word2Html(wordBytes);
+    }
+
+    /**
+     * `word` 转 `html`
+     *
+     * @param wordBytes:
+     *            word字节码
      * @param htmlFilePath:
      *            html文件路径
      * @return: html文件数据
      * @author : zhengqing
      * @date : 2020/11/23 16:21
      */
-    public static File word2Html(File wordFile, String htmlFilePath) {
-        return Word2HtmlUtil.word2Html(wordFile, htmlFilePath);
+    public static File word2Html(byte[] wordBytes, String htmlFilePath) {
+        return Word2HtmlUtil.word2Html(wordBytes, htmlFilePath);
     }
 
     /**
      * `doc` 转 `docx`
      *
-     * @param docFile:
-     *            doc文件数据
-     * @param docxFilePath:
-     *            待生成的的`docx`文件路径
-     * @return: 生成的`docx`文件路径
+     * @param docBytes:
+     *            doc文件字节码
+     * @return: 生成的`docx`文件字节码
      * @author : zhengqing
      * @date : 2020/11/24 11:26
      */
-    public static File doc2Docx(File docFile, String docxFilePath) {
-        byte[] docxBytes = Doc2DocxUtil.doc2Docx(MyFileUtil.readBytes(docFile.getAbsolutePath()));
-        return MyFileUtil.writeFileContent(docxBytes, docxFilePath);
+    public static byte[] doc2Docx(byte[] docBytes) {
+        return Doc2DocxUtil.doc2Docx(docBytes);
+    }
+
+    /**
+     * `doc` 转 `docx`
+     *
+     * @param docBytes:
+     *            doc文件字节码
+     * @param docxFilePath:
+     *            待生成的的`docx`文件路径
+     * @return: 生成的`docx`文件数据
+     * @author : zhengqing
+     * @date : 2020/11/24 11:26
+     */
+    public static File doc2Docx(byte[] docBytes, String docxFilePath) {
+        return Doc2DocxUtil.doc2Docx(docBytes, docxFilePath);
+    }
+
+    /**
+     * `html` 转 `word` 【 注：本地图片不支持显示！！！ 需转换成在线图片 】
+     *
+     * @param htmlBytes:
+     *            html字节码
+     * @return: word文件字节码
+     * @author : zhengqing
+     * @date : 2020/11/24 11:52
+     */
+    public static byte[] html2Word(byte[] htmlBytes) {
+        return Htm2WordlUtil.html2Word(htmlBytes);
     }
 
     /**
@@ -71,8 +108,20 @@ public class MyFileConvertUtil {
      * @date : 2020/11/23 16:04
      */
     public static File html2Word(byte[] htmlBytes, String wordFilePath) {
-        byte[] wordBytes = Htm2WordlUtil.html2Word(htmlBytes);
-        return MyFileUtil.writeFileContent(wordBytes, wordFilePath);
+        return Htm2WordlUtil.html2Word(htmlBytes, wordFilePath);
+    }
+
+    /**
+     * `html` 转 `pdf`
+     *
+     * @param htmlBytes:
+     *            html字节码
+     * @return: 生成的`pdf`字节码
+     * @author : zhengqing
+     * @date : 2020/11/24 11:26
+     */
+    public static byte[] html2Pdf(byte[] htmlBytes) {
+        return Html2PdfUtil.html2Pdf(htmlBytes);
     }
 
     /**
@@ -87,8 +136,20 @@ public class MyFileConvertUtil {
      * @date : 2020/11/24 11:26
      */
     public static File html2Pdf(byte[] htmlBytes, String pdfFilePath) {
-        byte[] pdfBytes = Html2PdfUtil.html2Pdf(htmlBytes);
-        return MyFileUtil.writeFileContent(pdfBytes, pdfFilePath);
+        return Html2PdfUtil.html2Pdf(htmlBytes, pdfFilePath);
+    }
+
+    /**
+     * `excel` 转 `pdf`
+     *
+     * @param excelBytes:
+     *            html字节码
+     * @return: 生成的`pdf`文件流
+     * @author : zhengqing
+     * @date : 2020/11/24 11:26
+     */
+    public static byte[] excel2Pdf(byte[] excelBytes) {
+        return Excel2PdfUtil.excel2Pdf(excelBytes);
     }
 
     /**
@@ -103,8 +164,7 @@ public class MyFileConvertUtil {
      * @date : 2020/11/24 11:26
      */
     public static File excel2Pdf(byte[] excelBytes, String pdfFilePath) {
-        byte[] pdfBytes = Excel2PdfUtil.excel2Pdf(excelBytes);
-        return MyFileUtil.writeFileContent(pdfBytes, pdfFilePath);
+        return Excel2PdfUtil.excel2Pdf(excelBytes, pdfFilePath);
     }
 
     /**
@@ -112,19 +172,27 @@ public class MyFileConvertUtil {
      *
      * @param wordBytes:
      *            word字节码数据
-     * @param imgPath:
-     *            生成图片路径
      * @return: 图片字节码数据列表
      * @author : zhengqing
      * @date : 2020/11/24 11:52
      */
-    public static List<File> word2Jpeg(byte[] wordBytes, String imgPath) {
-        List<File> fileList = Lists.newArrayList();
-        List<byte[]> jpegList = Word2JpegUtil.word2Jpeg(wordBytes);
-        for (int i = 0; i < jpegList.size(); i++) {
-            fileList.add(MyFileUtil.writeFileContent(jpegList.get(i), imgPath + "/" + (i + 1) + ".jpg"));
-        }
-        return fileList;
+    public static List<byte[]> word2Jpeg(byte[] wordBytes) {
+        return Word2JpegUtil.word2Jpeg(wordBytes);
+    }
+
+    /**
+     * `word` 转 `jpeg`
+     *
+     * @param wordBytes:
+     *            word字节码数据
+     * @param imgRootPath:
+     *            生成图片根路径
+     * @return: 图片字节码数据列表
+     * @author : zhengqing
+     * @date : 2020/11/24 11:52
+     */
+    public static List<File> word2Jpeg(byte[] wordBytes, String imgRootPath) {
+        return Word2JpegUtil.word2Jpeg(wordBytes, imgRootPath);
     }
 
     /**
@@ -132,19 +200,28 @@ public class MyFileConvertUtil {
      *
      * @param wordBytes:
      *            word字节码数据
-     * @param imgPath:
+     * @return: 图片字节码数据列表
+     * @author : zhengqing
+     * @date : 2020/11/24 11:52
+     */
+    @SneakyThrows(Exception.class)
+    public static List<byte[]> word2Png(byte[] wordBytes) {
+        return Word2PngUtil.word2Png(wordBytes);
+    }
+
+    /**
+     * `word` 转 `png`
+     *
+     * @param wordBytes:
+     *            word字节码数据
+     * @param imgRootPath:
      *            生成图片路径
      * @return: 图片字节码数据列表
      * @author : zhengqing
      * @date : 2020/11/24 11:52
      */
-    public static List<File> word2Png(byte[] wordBytes, String imgPath) {
-        List<File> fileList = Lists.newArrayList();
-        List<byte[]> pngList = Word2PngUtil.word2Png(wordBytes);
-        for (int i = 0; i < pngList.size(); i++) {
-            fileList.add(MyFileUtil.writeFileContent(pngList.get(i), imgPath + "/" + (i + 1) + ".png"));
-        }
-        return fileList;
+    public static List<File> word2Png(byte[] wordBytes, String imgRootPath) {
+        return Word2PngUtil.word2Png(wordBytes, imgRootPath);
     }
 
 }

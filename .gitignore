@@ -5,3 +5,4 @@
 *.ipr
 target
 tmp-generate
+src/test/java/com/zhengqing/demo/AppTestApi.java

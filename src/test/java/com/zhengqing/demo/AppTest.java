@@ -47,8 +47,8 @@ public class AppTest {
 
     @Test
     public void testWord2Html() throws Exception {
-        File htmlFile =
-            MyFileConvertUtil.word2Html(new File(WORD_FILE_PATH), Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.html");
+        File htmlFile = MyFileConvertUtil.word2Html(MyFileUtil.readBytes(WORD_FILE_PATH),
+            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.html");
         System.out.println(htmlFile);
     }
 
@@ -61,8 +61,8 @@ public class AppTest {
 
     @Test
     public void testDoc2Docx() throws Exception {
-        File docxFile =
-            MyFileConvertUtil.doc2Docx(new File(WORD_FILE_PATH), Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.docx");
+        File docxFile = MyFileConvertUtil.doc2Docx(MyFileUtil.readBytes(WORD_FILE_PATH),
+            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.docx");
         System.out.println(docxFile);
     }
 
