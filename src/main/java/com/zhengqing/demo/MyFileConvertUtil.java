@@ -112,6 +112,19 @@ public class MyFileConvertUtil {
     /**
      * `html` 转 `word` 【 注：本地图片不支持显示！！！ 需转换成在线图片 】
      *
+     * @param html:
+     *            html内容
+     * @return: word文件字节码
+     * @author : zhengqing
+     * @date : 2020/11/24 11:52
+     */
+    public static byte[] html2WordBytes(String html) {
+        return Htm2WordlUtil.htmlBytes2WordBytes(html.getBytes());
+    }
+
+    /**
+     * `html` 转 `word` 【 注：本地图片不支持显示！！！ 需转换成在线图片 】
+     *
      *
      * @param htmlBytes:
      *            html字节码
