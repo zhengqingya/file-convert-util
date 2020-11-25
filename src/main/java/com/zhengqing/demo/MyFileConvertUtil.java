@@ -35,8 +35,22 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/23 16:21
      */
-    public static byte[] word2Html(byte[] wordBytes) {
-        return Word2HtmlUtil.word2Html(wordBytes);
+    public static byte[] wordBytes2HtmlBytes(byte[] wordBytes) {
+        return Word2HtmlUtil.wordBytes2HtmlBytes(wordBytes);
+    }
+
+    /**
+     * `word` 转 `html`
+     *
+     * @param wordBytes:
+     *            word字节码
+     * @return: html文件内容
+     * @author : zhengqing
+     * @date : 2020/11/23 16:21
+     */
+    public static String wordBytes2HtmlStr(byte[] wordBytes) {
+        byte[] htmlBytes = Word2HtmlUtil.wordBytes2HtmlBytes(wordBytes);
+        return new String(htmlBytes);
     }
 
     /**
@@ -50,8 +64,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/23 16:21
      */
-    public static File word2Html(byte[] wordBytes, String htmlFilePath) {
-        return Word2HtmlUtil.word2Html(wordBytes, htmlFilePath);
+    public static File wordBytes2HtmlFile(byte[] wordBytes, String htmlFilePath) {
+        return Word2HtmlUtil.wordBytes2HtmlFile(wordBytes, htmlFilePath);
     }
 
     /**
@@ -63,8 +77,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:26
      */
-    public static byte[] doc2Docx(byte[] docBytes) {
-        return Doc2DocxUtil.doc2Docx(docBytes);
+    public static byte[] docBytes2DocxBytes(byte[] docBytes) {
+        return Doc2DocxUtil.docBytes2DocxBytes(docBytes);
     }
 
     /**
@@ -78,8 +92,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:26
      */
-    public static File doc2Docx(byte[] docBytes, String docxFilePath) {
-        return Doc2DocxUtil.doc2Docx(docBytes, docxFilePath);
+    public static File docBytes2DocxFile(byte[] docBytes, String docxFilePath) {
+        return Doc2DocxUtil.docBytes2DocxFile(docBytes, docxFilePath);
     }
 
     /**
@@ -91,8 +105,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:52
      */
-    public static byte[] html2Word(byte[] htmlBytes) {
-        return Htm2WordlUtil.html2Word(htmlBytes);
+    public static byte[] htmlBytes2WordBytes(byte[] htmlBytes) {
+        return Htm2WordlUtil.htmlBytes2WordBytes(htmlBytes);
     }
 
     /**
@@ -107,8 +121,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/23 16:04
      */
-    public static File html2Word(byte[] htmlBytes, String wordFilePath) {
-        return Htm2WordlUtil.html2Word(htmlBytes, wordFilePath);
+    public static File htmlBytes2WordFile(byte[] htmlBytes, String wordFilePath) {
+        return Htm2WordlUtil.htmlBytes2WordFile(htmlBytes, wordFilePath);
     }
 
     /**
@@ -120,8 +134,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:26
      */
-    public static byte[] html2Pdf(byte[] htmlBytes) {
-        return Html2PdfUtil.html2Pdf(htmlBytes);
+    public static byte[] htmlBytes2PdfBytes(byte[] htmlBytes) {
+        return Html2PdfUtil.htmlBytes2PdfBytes(htmlBytes);
     }
 
     /**
@@ -135,8 +149,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:26
      */
-    public static File html2Pdf(byte[] htmlBytes, String pdfFilePath) {
-        return Html2PdfUtil.html2Pdf(htmlBytes, pdfFilePath);
+    public static File htmlBytes2PdfFile(byte[] htmlBytes, String pdfFilePath) {
+        return Html2PdfUtil.htmlBytes2PdfFile(htmlBytes, pdfFilePath);
     }
 
     /**
@@ -148,8 +162,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:26
      */
-    public static byte[] excel2Pdf(byte[] excelBytes) {
-        return Excel2PdfUtil.excel2Pdf(excelBytes);
+    public static byte[] excelBytes2PdfBytes(byte[] excelBytes) {
+        return Excel2PdfUtil.excelBytes2PdfBytes(excelBytes);
     }
 
     /**
@@ -163,8 +177,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:26
      */
-    public static File excel2Pdf(byte[] excelBytes, String pdfFilePath) {
-        return Excel2PdfUtil.excel2Pdf(excelBytes, pdfFilePath);
+    public static File excelBytes2PdfFile(byte[] excelBytes, String pdfFilePath) {
+        return Excel2PdfUtil.excelBytes2PdfFile(excelBytes, pdfFilePath);
     }
 
     /**
@@ -176,8 +190,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:52
      */
-    public static List<byte[]> word2Jpeg(byte[] wordBytes) {
-        return Word2JpegUtil.word2Jpeg(wordBytes);
+    public static List<byte[]> wordBytes2JpegBytes(byte[] wordBytes) {
+        return Word2JpegUtil.wordBytes2JpegBytes(wordBytes);
     }
 
     /**
@@ -191,8 +205,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:52
      */
-    public static List<File> word2Jpeg(byte[] wordBytes, String imgRootPath) {
-        return Word2JpegUtil.word2Jpeg(wordBytes, imgRootPath);
+    public static List<File> wordBytes2JpegFileList(byte[] wordBytes, String imgRootPath) {
+        return Word2JpegUtil.wordBytes2JpegFileList(wordBytes, imgRootPath);
     }
 
     /**
@@ -205,8 +219,8 @@ public class MyFileConvertUtil {
      * @date : 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
-    public static List<byte[]> word2Png(byte[] wordBytes) {
-        return Word2PngUtil.word2Png(wordBytes);
+    public static List<byte[]> wordBytes2PngBytes(byte[] wordBytes) {
+        return Word2PngUtil.wordBytes2PngBytes(wordBytes);
     }
 
     /**
@@ -220,8 +234,8 @@ public class MyFileConvertUtil {
      * @author : zhengqing
      * @date : 2020/11/24 11:52
      */
-    public static List<File> word2Png(byte[] wordBytes, String imgRootPath) {
-        return Word2PngUtil.word2Png(wordBytes, imgRootPath);
+    public static List<File> wordBytes2PngFileList(byte[] wordBytes, String imgRootPath) {
+        return Word2PngUtil.wordBytes2PngFileList(wordBytes, imgRootPath);
     }
 
 }

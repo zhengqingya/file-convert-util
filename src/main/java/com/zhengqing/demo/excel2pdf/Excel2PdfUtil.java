@@ -32,7 +32,7 @@ public class Excel2PdfUtil {
      * @date : 2020/11/24 11:26
      */
     @SneakyThrows(Exception.class)
-    public static byte[] excel2Pdf(byte[] excelBytes) {
+    public static byte[] excelBytes2PdfBytes(byte[] excelBytes) {
         Workbook workbook = new Workbook(new ByteArrayInputStream(excelBytes));
         // 设置pdf保存的格式以及强制所有列都在同一页
         PdfSaveOptions pso = new PdfSaveOptions();
@@ -56,7 +56,7 @@ public class Excel2PdfUtil {
      * @date : 2020/11/24 11:26
      */
     @SneakyThrows(Exception.class)
-    public static File excel2Pdf(byte[] excelBytes, String pdfFilePath) {
+    public static File excelBytes2PdfFile(byte[] excelBytes, String pdfFilePath) {
         Workbook workbook = new Workbook(new ByteArrayInputStream(excelBytes));
         // 设置pdf保存的格式以及强制所有列都在同一页
         PdfSaveOptions pso = new PdfSaveOptions();

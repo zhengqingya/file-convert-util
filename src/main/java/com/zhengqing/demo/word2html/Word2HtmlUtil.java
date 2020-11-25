@@ -58,7 +58,7 @@ public class Word2HtmlUtil {
      * @date : 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
-    public static byte[] word2Html(byte[] wordBytes) {
+    public static byte[] wordBytes2HtmlBytes(byte[] wordBytes) {
         // 创建临时word转html后生成的html文件
         String tmpHtmlFilePath =
             Constants.DEFAULT_FOLDER_TMP_GENERATE + "/" + System.currentTimeMillis() + "-" + getUUID32() + ".html";
@@ -82,7 +82,7 @@ public class Word2HtmlUtil {
      * @date : 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
-    public static File word2Html(byte[] wordBytes, String htmlFilePath) {
+    public static File wordBytes2HtmlFile(byte[] wordBytes, String htmlFilePath) {
         // Load word document from disk.
         com.aspose.words.Document doc = new com.aspose.words.Document(new ByteArrayInputStream(wordBytes));
         // Save the document into MHTML.
@@ -223,10 +223,10 @@ public class Word2HtmlUtil {
      * @author : zhengqing
      * @date : 2020/11/23 16:21
      */
-    public static File wordToHtmlFile(String fileRootPath, String wordFileName, String htmlFileName) {
+    public static File word2HtmlFile(String fileRootPath, String wordFileName, String htmlFileName) {
         final String htmlFilePath = fileRootPath + "/" + htmlFileName;
         // 获取word转html文件内容
-        String htmlContent = Word2HtmlUtil.wordToHtmlContent(fileRootPath, wordFileName, htmlFileName);
+        String htmlContent = Word2HtmlUtil.word2HtmlContent(fileRootPath, wordFileName, htmlFileName);
         // 生成html文件
         File htmlFile = MyFileUtil.writeFileContent(htmlContent, htmlFilePath);
         log.debug("word转html成功!  生成html文件路径:【{}】", htmlFilePath);
@@ -246,7 +246,7 @@ public class Word2HtmlUtil {
      * @author : zhengqing
      * @date : 2020/11/23 16:21
      */
-    public static String wordToHtmlContent(String fileRootPath, String wordFileName, String htmlFileName) {
+    public static String word2HtmlContent(String fileRootPath, String wordFileName, String htmlFileName) {
         final String imagePath = fileRootPath + "/image";
         final String htmlFilePath = fileRootPath + "/" + htmlFileName;
         // 返回word转html文件内容

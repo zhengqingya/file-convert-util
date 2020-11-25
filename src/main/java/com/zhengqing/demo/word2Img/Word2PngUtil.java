@@ -35,7 +35,7 @@ public class Word2PngUtil {
      * @date : 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
-    public static List<byte[]> word2Png(byte[] wordBytes) {
+    public static List<byte[]> wordBytes2PngBytes(byte[] wordBytes) {
         Document doc = new Document(new ByteArrayInputStream(wordBytes));
         ImageSaveOptions iso = new ImageSaveOptions(SaveFormat.PNG);
         iso.setResolution(128);
@@ -65,7 +65,7 @@ public class Word2PngUtil {
      * @date : 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
-    public static List<File> word2Png(byte[] wordBytes, String imgRootPath) {
+    public static List<File> wordBytes2PngFileList(byte[] wordBytes, String imgRootPath) {
         Document doc = new Document(new ByteArrayInputStream(wordBytes));
         ImageSaveOptions iso = new ImageSaveOptions(SaveFormat.PNG);
         iso.setResolution(128);

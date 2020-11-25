@@ -38,7 +38,7 @@ public class Htm2WordlUtil {
      * @date : 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
-    public static byte[] html2Word(byte[] htmlBytes) {
+    public static byte[] htmlBytes2WordBytes(byte[] htmlBytes) {
         Document doc = new Document();
         DocumentBuilder builder = new DocumentBuilder(doc);
         builder.insertHtml(new String(htmlBytes));
@@ -59,7 +59,7 @@ public class Htm2WordlUtil {
      * @date : 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
-    public static File html2Word(byte[] htmlBytes, String wordFilePath) {
+    public static File htmlBytes2WordFile(byte[] htmlBytes, String wordFilePath) {
         Document doc = new Document();
         DocumentBuilder builder = new DocumentBuilder(doc);
         builder.insertHtml(new String(htmlBytes));

@@ -32,7 +32,7 @@ public class Doc2DocxUtil {
      * @date : 2020/11/24 11:26
      */
     @SneakyThrows(Exception.class)
-    public static byte[] doc2Docx(byte[] docBytes) {
+    public static byte[] docBytes2DocxBytes(byte[] docBytes) {
         Document document = new Document(new ByteArrayInputStream(docBytes));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         document.save(outputStream, SaveFormat.DOCX);
@@ -51,7 +51,7 @@ public class Doc2DocxUtil {
      * @date : 2020/11/24 11:26
      */
     @SneakyThrows(Exception.class)
-    public static File doc2Docx(byte[] docBytes, String docxFilePath) {
+    public static File docBytes2DocxFile(byte[] docBytes, String docxFilePath) {
         Document document = new Document(new ByteArrayInputStream(docBytes));
         document.save(docxFilePath, SaveFormat.DOCX);
         return new File(docxFilePath);
@@ -71,7 +71,7 @@ public class Doc2DocxUtil {
      * @date : 2020/11/24 11:26
      */
     @SneakyThrows(Exception.class)
-    public static String doc2Docx(String fileRootPath, String wordFileName, String wordFileNameNew) {
+    public static String docBytes2DocxFile(String fileRootPath, String wordFileName, String wordFileNameNew) {
         // word 文件路径
         final String wordFilePath = fileRootPath + "/" + wordFileName;
         final String wordFilePathNew = fileRootPath + "/" + wordFileNameNew;

@@ -32,7 +32,7 @@ public class Html2PdfUtil {
      * @date : 2020/11/24 11:26
      */
     @SneakyThrows(Exception.class)
-    public static byte[] html2Pdf(byte[] htmlBytes) {
+    public static byte[] htmlBytes2PdfBytes(byte[] htmlBytes) {
         Document document = new Document(new ByteArrayInputStream(htmlBytes));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         document.save(outputStream, SaveFormat.PDF);
@@ -52,7 +52,7 @@ public class Html2PdfUtil {
      * @date : 2020/11/24 11:26
      */
     @SneakyThrows(Exception.class)
-    public static File html2Pdf(byte[] htmlBytes, String pdfFilePath) {
+    public static File htmlBytes2PdfFile(byte[] htmlBytes, String pdfFilePath) {
         Document document = new Document(new ByteArrayInputStream(htmlBytes));
         document.save(pdfFilePath, SaveFormat.PDF);
         return new File(pdfFilePath);
