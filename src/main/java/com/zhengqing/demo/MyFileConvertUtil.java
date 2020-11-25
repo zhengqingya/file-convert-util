@@ -3,6 +3,7 @@ package com.zhengqing.demo;
 import java.io.File;
 import java.util.List;
 
+import com.zhengqing.demo.Html2Img.Html2PngUtil;
 import com.zhengqing.demo.doc2docx.Doc2DocxUtil;
 import com.zhengqing.demo.excel2pdf.Excel2PdfUtil;
 import com.zhengqing.demo.html2pdf.Html2PdfUtil;
@@ -249,6 +250,34 @@ public class MyFileConvertUtil {
      */
     public static List<File> wordBytes2PngFileList(byte[] wordBytes, String imgRootPath) {
         return Word2PngUtil.wordBytes2PngFileList(wordBytes, imgRootPath);
+    }
+
+    /**
+     * `html` 转 `png`
+     *
+     * @param htmlBytes:
+     *            html字节码
+     * @return: 图片字节码数据列表
+     * @author : zhengqing
+     * @date : 2020/11/25 17:17
+     */
+    public static List<byte[]> htmlBytes2PngBytes(byte[] htmlBytes) {
+        return Html2PngUtil.htmlBytes2PngBytes(htmlBytes);
+    }
+
+    /**
+     * `html` 转 `png`
+     *
+     * @param htmlBytes:
+     *            html字节码
+     * @param imgRootPath:
+     *            需转换的`png`文件路径
+     * @return: 图片文件数据列表
+     * @author : zhengqing
+     * @date : 2020/11/25 17:17
+     */
+    public static List<File> htmlBytes2PngFileList(byte[] htmlBytes, String imgRootPath) {
+        return Html2PngUtil.htmlBytes2PngFileList(htmlBytes, imgRootPath);
     }
 
 }

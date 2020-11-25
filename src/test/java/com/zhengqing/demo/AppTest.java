@@ -97,6 +97,14 @@ public class AppTest {
         System.out.println(pngFileList);
     }
 
+    @Test
+    public void testHtml2Png() throws Exception {
+        byte[] htmlFileBytes = MyFileUtil.readBytes(HTML_FILE_PATH);
+        List<File> pngFileList =
+            MyFileConvertUtil.wordBytes2PngFileList(htmlFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
+        System.out.println(pngFileList);
+    }
+
     @Test // 【 https://gitee.com/cevin15/MD2File 】 【 注：转换格式不是太完善，存在一定问题！ 】
     public void testMarkdown2Html() throws Exception {
         FileFactory.produce(new File(MD_FILE_PATH), Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-md.html");

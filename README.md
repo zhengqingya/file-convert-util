@@ -10,6 +10,7 @@
 6. `word` 转 `jpeg`
 7. `word` 转 `png`
 8. `markdown` 转 `html`
+9. `html` 转 `png`
 
 ### 二、项目地址
 
