@@ -1,4 +1,4 @@
-package com.zhengqing.demo.word2Img;
+package com.zhengqing.demo.html2img;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,33 +15,32 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
- * Word 转 PNG 工具类
+ * html 转 png 工具类
  * </p>
  *
  * @author : zhengqing
  * @description :
- * @date : 2020/11/23 16:00
+ * @date : 2020/11/25 17:16
  */
 @Slf4j
-public class Word2PngUtil {
+public class Html2PngUtil {
 
     /**
-     * `word` 转 `png`
+     * `html` 转 `png`
      *
-     * @param wordBytes:
-     *            word字节码数据
+     * @param htmlBytes:
+     *            html字节码
      * @return: 图片字节码数据列表
      * @author : zhengqing
-     * @date : 2020/11/24 11:52
+     * @date : 2020/11/25 17:17
      */
     @SneakyThrows(Exception.class)
-    public static List<byte[]> wordBytes2PngBytes(byte[] wordBytes) {
-        Document doc = new Document(new ByteArrayInputStream(wordBytes));
+    public static List<byte[]> htmlBytes2PngBytes(byte[] htmlBytes) {
+        Document doc = new Document(new ByteArrayInputStream(htmlBytes));
         ImageSaveOptions iso = new ImageSaveOptions(SaveFormat.PNG);
         iso.setResolution(128);
         iso.setPrettyFormat(true);
         iso.setUseAntiAliasing(true);
-
         List<byte[]> pngList = Lists.newArrayList();
         for (int i = 0; i < doc.getPageCount(); i++) {
             iso.setPageIndex(i);
@@ -49,24 +48,23 @@ public class Word2PngUtil {
             doc.save(outputStream, iso);
             pngList.add(outputStream.toByteArray());
         }
-
         return pngList;
     }
 
     /**
-     * `word` 转 `png`
+     * `html` 转 `png`
      *
-     * @param wordBytes:
-     *            word字节码数据
+     * @param htmlBytes:
+     *            html字节码
      * @param imgRootPath:
-     *            生成图片路径
+     *            需转换的`png`文件路径
      * @return: 图片文件数据列表
      * @author : zhengqing
-     * @date : 2020/11/24 11:52
+     * @date : 2020/11/25 17:17
      */
     @SneakyThrows(Exception.class)
-    public static List<File> wordBytes2PngFileList(byte[] wordBytes, String imgRootPath) {
-        Document doc = new Document(new ByteArrayInputStream(wordBytes));
+    public static List<File> htmlBytes2PngFileList(byte[] htmlBytes, String imgRootPath) {
+        Document doc = new Document(new ByteArrayInputStream(htmlBytes));
         ImageSaveOptions iso = new ImageSaveOptions(SaveFormat.PNG);
         iso.setResolution(128);
         iso.setPrettyFormat(true);
@@ -79,7 +77,6 @@ public class Word2PngUtil {
             doc.save(imgPath, iso);
             pngList.add(new File(imgPath));
         }
-
         return pngList;
     }
 

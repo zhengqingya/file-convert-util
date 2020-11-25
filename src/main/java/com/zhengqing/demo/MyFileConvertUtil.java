@@ -3,14 +3,14 @@ package com.zhengqing.demo;
 import java.io.File;
 import java.util.List;
 
-import com.zhengqing.demo.Html2Img.Html2PngUtil;
 import com.zhengqing.demo.doc2docx.Doc2DocxUtil;
 import com.zhengqing.demo.excel2pdf.Excel2PdfUtil;
+import com.zhengqing.demo.html2img.Html2PngUtil;
 import com.zhengqing.demo.html2pdf.Html2PdfUtil;
 import com.zhengqing.demo.html2word.Htm2WordlUtil;
-import com.zhengqing.demo.word2Img.Word2JpegUtil;
-import com.zhengqing.demo.word2Img.Word2PngUtil;
 import com.zhengqing.demo.word2html.Word2HtmlUtil;
+import com.zhengqing.demo.word2img.Word2JpegUtil;
+import com.zhengqing.demo.word2img.Word2PngUtil;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
