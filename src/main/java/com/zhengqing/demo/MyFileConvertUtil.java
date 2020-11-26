@@ -11,6 +11,7 @@ import com.zhengqing.demo.html2word.Htm2WordlUtil;
 import com.zhengqing.demo.word2html.Word2HtmlUtil;
 import com.zhengqing.demo.word2img.Word2JpegUtil;
 import com.zhengqing.demo.word2img.Word2PngUtil;
+import com.zhengqing.demo.word2pdf.Word2PdfUtil;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -67,6 +68,34 @@ public class MyFileConvertUtil {
      */
     public static File wordBytes2HtmlFile(byte[] wordBytes, String htmlFilePath) {
         return Word2HtmlUtil.wordBytes2HtmlFile(wordBytes, htmlFilePath);
+    }
+
+    /**
+     * `word` 转 `pdf`
+     *
+     * @param wordBytes:
+     *            word字节码
+     * @return: 生成的`pdf`字节码
+     * @author : zhengqing
+     * @date : 2020/11/26 13:39
+     */
+    public static byte[] wordBytes2PdfBytes(byte[] wordBytes) {
+        return Word2PdfUtil.wordBytes2PdfBytes(wordBytes);
+    }
+
+    /**
+     * `word` 转 `pdf`
+     *
+     * @param wordBytes:
+     *            word字节码
+     * @param pdfFilePath:
+     *            需转换的`pdf`文件路径
+     * @return: 生成的`pdf`文件数据
+     * @author : zhengqing
+     * @date : 2020/11/26 13:39
+     */
+    public static File wordBytes2PdfFile(byte[] wordBytes, String pdfFilePath) {
+        return Word2PdfUtil.wordBytes2PdfFile(wordBytes, pdfFilePath);
     }
 
     /**

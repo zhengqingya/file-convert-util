@@ -54,30 +54,9 @@ public class AppTest {
     }
 
     @Test
-    public void testHtml2Word() throws Exception {
-        File wordFile = MyFileConvertUtil.htmlBytes2WordFile(MyFileUtil.readBytes(HTML_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.doc");
-        System.out.println(wordFile);
-    }
-
-    @Test
-    public void testDoc2Docx() throws Exception {
-        File docxFile = MyFileConvertUtil.docBytes2DocxFile(MyFileUtil.readBytes(WORD_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.docx");
-        System.out.println(docxFile);
-    }
-
-    @Test
-    public void testHtml2Pdf() throws Exception {
-        File pdfFile = MyFileConvertUtil.htmlBytes2PdfFile(MyFileUtil.readBytes(HTML_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-html.pdf");
-        System.out.println(pdfFile);
-    }
-
-    @Test
-    public void testExcel2Pdf() throws Exception {
-        File pdfFile = MyFileConvertUtil.excelBytes2PdfFile(MyFileUtil.readBytes(EXCEL_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-excel.pdf");
+    public void testWord2Pdf() throws Exception {
+        File pdfFile = MyFileConvertUtil.wordBytes2PdfFile(MyFileUtil.readBytes(WORD_FILE_PATH),
+            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-word.pdf");
         System.out.println(pdfFile);
     }
 
@@ -95,6 +74,34 @@ public class AppTest {
         List<File> pngFileList =
             MyFileConvertUtil.wordBytes2PngFileList(wordFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
         System.out.println(pngFileList);
+    }
+
+    @Test
+    public void testHtml2Word() throws Exception {
+        File wordFile = MyFileConvertUtil.htmlBytes2WordFile(MyFileUtil.readBytes(HTML_FILE_PATH),
+            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.doc");
+        System.out.println(wordFile);
+    }
+
+    @Test
+    public void testHtml2Pdf() throws Exception {
+        File pdfFile = MyFileConvertUtil.htmlBytes2PdfFile(MyFileUtil.readBytes(HTML_FILE_PATH),
+            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-html.pdf");
+        System.out.println(pdfFile);
+    }
+
+    @Test
+    public void testDoc2Docx() throws Exception {
+        File docxFile = MyFileConvertUtil.docBytes2DocxFile(MyFileUtil.readBytes(WORD_FILE_PATH),
+            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.docx");
+        System.out.println(docxFile);
+    }
+
+    @Test
+    public void testExcel2Pdf() throws Exception {
+        File pdfFile = MyFileConvertUtil.excelBytes2PdfFile(MyFileUtil.readBytes(EXCEL_FILE_PATH),
+            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-excel.pdf");
+        System.out.println(pdfFile);
     }
 
     @Test
