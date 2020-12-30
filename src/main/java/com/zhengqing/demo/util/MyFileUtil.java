@@ -1,4 +1,4 @@
-package com.zhengqing.demo.utils;
+package com.zhengqing.demo.util;
 
 import java.io.File;
 import java.io.InputStream;

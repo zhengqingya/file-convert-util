@@ -12,7 +12,7 @@ import com.aspose.words.Document;
 import com.aspose.words.SaveFormat;
 import com.youbenzi.md2.export.FileFactory;
 import com.zhengqing.demo.config.Constants;
-import com.zhengqing.demo.utils.MyFileUtil;
+import com.zhengqing.demo.util.MyFileUtil;
 
 /**
  * <p>

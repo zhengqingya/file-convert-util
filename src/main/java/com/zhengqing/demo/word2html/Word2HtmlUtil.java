@@ -31,7 +31,7 @@ import org.w3c.dom.Document;
 
 import com.aspose.words.SaveFormat;
 import com.zhengqing.demo.config.Constants;
-import com.zhengqing.demo.utils.MyFileUtil;
+import com.zhengqing.demo.util.MyFileUtil;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
