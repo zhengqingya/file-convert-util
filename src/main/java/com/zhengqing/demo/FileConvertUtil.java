@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date : 2020/11/23$ 16:19$
  */
 @Slf4j
-public class MyFileConvertUtil {
+public class FileConvertUtil {
 
     /**
      * `word` 转 `html`
