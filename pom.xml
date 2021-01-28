@@ -194,6 +194,22 @@
       <systemPath>${project.basedir}/lib/aspose-cells-8.5.2.jar</systemPath>
     </dependency>
 
+    <!-- pdf 转 word -->
+    <dependency>
+      <groupId>e-iceblue</groupId>
+      <artifactId>spire.doc.free</artifactId>
+      <version>2.7.3</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/Spire.Doc.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>e-iceblue</groupId>
+      <artifactId>spire.pdf.free</artifactId>
+      <version>2.6.3</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/Spire.Pdf.jar</systemPath>
+    </dependency>
+
 
   </dependencies>
 

@@ -8,7 +8,8 @@ import com.zhengqing.demo.doc2docx.Doc2DocxUtil;
 import com.zhengqing.demo.excel2pdf.Excel2PdfUtil;
 import com.zhengqing.demo.html2img.Html2PngUtil;
 import com.zhengqing.demo.html2pdf.Html2PdfUtil;
-import com.zhengqing.demo.html2word.Htm2WordlUtil;
+import com.zhengqing.demo.html2word.Htm2WordUtil;
+import com.zhengqing.demo.pdf2word.Pdf2WordUtil;
 import com.zhengqing.demo.word2html.Word2HtmlUtil;
 import com.zhengqing.demo.word2img.Word2JpegUtil;
 import com.zhengqing.demo.word2img.Word2PngUtil;
@@ -145,7 +146,7 @@ public class FileConvertUtil {
      */
     public static byte[] htmlBytes2WordBytes(byte[] htmlBytes) {
         MatchLicense.init();
-        return Htm2WordlUtil.htmlBytes2WordBytes(htmlBytes);
+        return Htm2WordUtil.htmlBytes2WordBytes(htmlBytes);
     }
 
     /**
@@ -159,7 +160,7 @@ public class FileConvertUtil {
      */
     public static byte[] html2WordBytes(String html) {
         MatchLicense.init();
-        return Htm2WordlUtil.htmlBytes2WordBytes(html.getBytes());
+        return Htm2WordUtil.htmlBytes2WordBytes(html.getBytes());
     }
 
     /**
@@ -176,7 +177,7 @@ public class FileConvertUtil {
      */
     public static File htmlBytes2WordFile(byte[] htmlBytes, String wordFilePath) {
         MatchLicense.init();
-        return Htm2WordlUtil.htmlBytes2WordFile(htmlBytes, wordFilePath);
+        return Htm2WordUtil.htmlBytes2WordFile(htmlBytes, wordFilePath);
     }
 
     /**
@@ -328,6 +329,21 @@ public class FileConvertUtil {
     public static List<File> htmlBytes2PngFileList(byte[] htmlBytes, String imgRootPath) {
         MatchLicense.init();
         return Html2PngUtil.htmlBytes2PngFileList(htmlBytes, imgRootPath);
+    }
+
+    /**
+     * `pdf` 转 `word`
+     *
+     * @param pdfPath:
+     *            pdf文件路径
+     * @param wordPath:
+     *            word输出路径
+     * @return: void
+     * @author : zhengqing
+     * @date : 2021/1/28 9:56
+     */
+    public static void pdf2Word(String pdfPath, String wordPath) {
+        new Pdf2WordUtil().pdf2Word(pdfPath, wordPath);
     }
 
 }

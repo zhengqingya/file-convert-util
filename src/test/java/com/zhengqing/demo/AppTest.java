@@ -31,6 +31,7 @@ public class AppTest {
     private final String HTML_FILE_PATH = Constants.DEFAULT_FOLDER_TMP + "/test.html";
     private final String EXCEL_FILE_PATH = Constants.DEFAULT_FOLDER_TMP + "/test.xlsx";
     private final String MD_FILE_PATH = Constants.DEFAULT_FOLDER_TMP + "/test.md";
+    private final String PDF_FILE_PATH = Constants.DEFAULT_FOLDER_TMP + "/test.pdf";
 
     @Test
     public void testData() throws Exception {
@@ -117,4 +118,8 @@ public class AppTest {
         FileFactory.produce(new File(MD_FILE_PATH), Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-md.html");
     }
 
+    @Test
+    public void testPdf2Word() throws Exception {
+        FileConvertUtil.pdf2Word(PDF_FILE_PATH, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/pdf2word.docx");
+    }
 }
