@@ -13,6 +13,7 @@
 9. `excel` 转 `pdf`
 10. `markdown` 转 `html`
 11. `pdf` 转 `word`
+12. `pdf` 转 `png`
 
 ### 二、项目地址
 
