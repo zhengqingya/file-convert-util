@@ -356,7 +356,7 @@ public class FileConvertUtil {
      * @author : zhengqing
      * @date : 2021/1/28 9:56
      */
-    public static List<byte[]> pdf2Png(byte[] pdfBytes) {
+    public static List<byte[]> pdfBytes2PngBytes(byte[] pdfBytes) {
         return new Pdf2PngUtil().pdf2Png(pdfBytes);
     }
 
@@ -371,7 +371,7 @@ public class FileConvertUtil {
      * @author : zhengqing
      * @date : 2021/1/28 9:56
      */
-    public static List<File> pdf2Png(byte[] pdfBytes, String imgRootPath) {
+    public static List<File> pdfBytes2PngFileList(byte[] pdfBytes, String imgRootPath) {
         return new Pdf2PngUtil().pdf2Png(pdfBytes, imgRootPath);
     }
 

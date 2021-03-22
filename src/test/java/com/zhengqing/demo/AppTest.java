@@ -126,7 +126,7 @@ public class AppTest {
     @Test
     public void testPdf2Png() throws Exception {
         byte[] pngBytes = MyFileUtil.readBytes(PDF_FILE_PATH);
-        FileConvertUtil.pdf2Png(pngBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/pdf2img");
+        FileConvertUtil.pdfBytes2PngFileList(pngBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/pdf2img");
     }
 
 }
