@@ -9,6 +9,7 @@ import com.zhengqing.demo.excel2pdf.Excel2PdfUtil;
 import com.zhengqing.demo.html2img.Html2PngUtil;
 import com.zhengqing.demo.html2pdf.Html2PdfUtil;
 import com.zhengqing.demo.html2word.Htm2WordUtil;
+import com.zhengqing.demo.pdf2Img.Pdf2PngUtil;
 import com.zhengqing.demo.pdf2word.Pdf2WordUtil;
 import com.zhengqing.demo.word2html.Word2HtmlUtil;
 import com.zhengqing.demo.word2img.Word2JpegUtil;
@@ -344,6 +345,34 @@ public class FileConvertUtil {
      */
     public static void pdf2Word(String pdfPath, String wordPath) {
         new Pdf2WordUtil().pdf2Word(pdfPath, wordPath);
+    }
+
+    /**
+     * `pdf` 转 `png`
+     *
+     * @param pdfBytes:
+     *            pdf字节码
+     * @return: 转换后的png字节码
+     * @author : zhengqing
+     * @date : 2021/1/28 9:56
+     */
+    public static List<byte[]> pdf2Png(byte[] pdfBytes) {
+        return new Pdf2PngUtil().pdf2Png(pdfBytes);
+    }
+
+    /**
+     * `pdf` 转 `png`
+     *
+     * @param pdfBytes:
+     *            pdf字节码
+     * @param imgRootPath:
+     *            需转换的`png`文件路径
+     * @return: png文件列表
+     * @author : zhengqing
+     * @date : 2021/1/28 9:56
+     */
+    public static List<File> pdf2Png(byte[] pdfBytes, String imgRootPath) {
+        return new Pdf2PngUtil().pdf2Png(pdfBytes, imgRootPath);
     }
 
 }

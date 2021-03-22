@@ -122,4 +122,11 @@ public class AppTest {
     public void testPdf2Word() throws Exception {
         FileConvertUtil.pdf2Word(PDF_FILE_PATH, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/pdf2word.docx");
     }
+
+    @Test
+    public void testPdf2Png() throws Exception {
+        byte[] pngBytes = MyFileUtil.readBytes(PDF_FILE_PATH);
+        FileConvertUtil.pdf2Png(pngBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/pdf2img");
+    }
+
 }
