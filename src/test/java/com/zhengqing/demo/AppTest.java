@@ -1,10 +1,12 @@
 package com.zhengqing.demo;
 
+import cn.hutool.core.io.FileUtil;
 import com.aspose.words.Document;
 import com.aspose.words.SaveFormat;
 import com.youbenzi.md2.export.FileFactory;
 import com.zhengqing.demo.config.Constants;
 import com.zhengqing.demo.util.MyFileUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +24,7 @@ import java.util.List;
  * @description
  * @date 2020/7/10$ 11:02$
  */
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AppTest {
@@ -88,6 +91,13 @@ public class AppTest {
         File pdfFile = FileConvertUtil.htmlBytes2PdfFile(MyFileUtil.readBytes(HTML_FILE_PATH),
                 Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-html.pdf");
         System.out.println(pdfFile);
+    }
+
+    @Test
+    public void testHtml2Jpg() throws Exception {
+        byte[] jpgBytes = FileConvertUtil.htmlBytes2JpgBytes(MyFileUtil.readBytes(HTML_FILE_PATH));
+        File file = FileUtil.writeBytes(jpgBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.jpg");
+        System.out.println(file.getName());
     }
 
     @Test

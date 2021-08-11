@@ -1,257 +1,265 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.4.0</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
-  <groupId>com.zhengqing</groupId>
-  <artifactId>file-convert-util</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>file-convert-util</name>
-  <description>Demo project for Spring Boot</description>
-
-  <properties>
-    <junit.version>4.12</junit.version>
-    <jsoup.version>1.9.2</jsoup.version>
-    <poi.version>3.15</poi.version>
-    <hutool-all.version>5.3.8</hutool-all.version>
-    <commons-io.version>2.7</commons-io.version>
-    <guava.version>29.0-jre</guava.version>
-    <commons-beanutils.version>1.9.4</commons-beanutils.version>
-  </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- 测试包 -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- 添加适用于生产环境的功能，如性能指标和监测等功能 -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional>
-      <scope>true</scope>
-    </dependency>
-
-    <!-- lombok插件 -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <optional>true</optional>
-    </dependency>
-
-    <!-- Hutool工具类 -->
-    <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
-    <dependency>
-      <groupId>cn.hutool</groupId>
-      <artifactId>hutool-all</artifactId>
-      <version>${hutool-all.version}</version>
-    </dependency>
-
-    <!-- google-guava工具包 -->
-    <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>${guava.version}</version>
-    </dependency>
-
-    <!-- 解决文件上传报错：org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.NoClassDefFoundError: org/apache/commons/fileupload/disk/DiskFileItemFactory -->
-    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>${commons-io.version}</version>
-    </dependency>
-
-    <!-- commons-lang3 -->
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-    </dependency>
-    <!-- commons-beanutils -->
-    <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
-      <version>${commons-beanutils.version}</version>
-      <classifier>sources</classifier>
-      <type>java-source</type>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jsoup</groupId>
-      <artifactId>jsoup</artifactId>
-      <version>${jsoup.version}</version>
-    </dependency>
-
-    <!-- ================================================================= -->
-
-    <!--  html转md -->
-    <!--thymeleaf作为模板文件-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-web</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <!--要求HTML格式必须为严格的html5格式，必须有结束标签，否则会报错！解决办法如下：并添加配置-->
-    <!--    <dependency>-->
-    <!--      <groupId>net.sourceforge.nekohtml</groupId>-->
-    <!--      <artifactId>nekohtml</artifactId>-->
-    <!--    </dependency>-->
-    <!--    <dependency>-->
-    <!--      <groupId>org.thymeleaf.extras</groupId>-->
-    <!--      <artifactId>thymeleaf-extras-springsecurity4</artifactId>-->
-    <!--    </dependency>-->
-
-    <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-java8time -->
-    <dependency>
-      <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-java8time</artifactId>
-    </dependency>
-
-
-    <!--   word文档 转 html文件 -->
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi</artifactId>
-      <version>${poi.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-scratchpad</artifactId>
-      <version>3.12</version>
-    </dependency>
-    <dependency>
-      <groupId>fr.opensagres.xdocreport</groupId>
-      <artifactId>fr.opensagres.xdocreport.document</artifactId>
-      <version>1.0.5</version>
-    </dependency>
-    <dependency>
-      <groupId>fr.opensagres.xdocreport</groupId>
-      <artifactId>org.apache.poi.xwpf.converter.xhtml</artifactId>
-      <version>1.0.5</version>
-    </dependency>
-
-
-    <!--  md转html -->
-    <dependency>
-      <groupId>com.youbenzi</groupId>
-      <artifactId>MD2File</artifactId>
-      <version>1.0.2</version>
-    </dependency>
-
-
-    <!--  aspose-words 文档操作工具包  -->
-    <!-- https://mvnrepository.com/artifact/com.aspose/aspose-words -->
-    <!--    <dependency>-->
-    <!--      <groupId>com.aspose</groupId>-->
-    <!--      <artifactId>aspose-words</artifactId>-->
-    <!--      <version>20.11</version>-->
-    <!--      <type>pom</type>-->
-    <!--    </dependency>-->
-    <dependency>
-      <groupId>com.aspose</groupId>
-      <artifactId>aspose-words</artifactId>
-      <version>18.6</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/aspose-words-18.6-jdk16.jar</systemPath>
-    </dependency>
-    <dependency>
-      <groupId>com.aspose</groupId>
-      <artifactId>aspose-cells</artifactId>
-      <version>8.5.2</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/aspose-cells-8.5.2.jar</systemPath>
-    </dependency>
-
-    <!-- pdf 转 word -->
-    <dependency>
-      <groupId>e-iceblue</groupId>
-      <artifactId>spire.doc.free</artifactId>
-      <version>2.7.3</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/Spire.Doc.jar</systemPath>
-    </dependency>
-    <dependency>
-      <groupId>e-iceblue</groupId>
-      <artifactId>spire.pdf.free</artifactId>
-      <version>2.6.3</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/Spire.Pdf.jar</systemPath>
-    </dependency>
-
-    <!-- pdfbox：PDF转图片 -->
-    <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
-    <dependency>
-      <groupId>org.apache.pdfbox</groupId>
-      <artifactId>pdfbox</artifactId>
-      <version>2.0.23</version>
-    </dependency>
-
-
-  </dependencies>
-
-  <!--  <repositories>-->
-  <!--    <repository>-->
-  <!--      <id>AsposeJavaAPI</id>-->
-  <!--      <name>Aspose Java API</name>-->
-  <!--      <url>https://repository.aspose.com/repo/</url>-->
-  <!--    </repository>-->
-  <!--  </repositories>-->
-
-
-  <build>
-    <plugins>
-      <plugin>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
+    <parent>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.zhengqing</groupId>
+    <artifactId>file-convert-util</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>file-convert-util</name>
+    <description>Demo project for Spring Boot</description>
 
-      <!--添加配置跳过测试-->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.1</version>
-        <configuration>
-          <skipTests>true</skipTests>
-        </configuration>
-      </plugin>
-      <!--添加配置跳过测试-->
+    <properties>
+        <junit.version>4.12</junit.version>
+        <jsoup.version>1.9.2</jsoup.version>
+        <poi.version>3.15</poi.version>
+        <hutool-all.version>5.3.8</hutool-all.version>
+        <commons-io.version>2.7</commons-io.version>
+        <guava.version>29.0-jre</guava.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 测试包 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 添加适用于生产环境的功能，如性能指标和监测等功能 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>true</scope>
+        </dependency>
+
+        <!-- lombok插件 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Hutool工具类 -->
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+
+        <!-- google-guava工具包 -->
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <!-- 解决文件上传报错：org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.NoClassDefFoundError: org/apache/commons/fileupload/disk/DiskFileItemFactory -->
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <!-- commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <!-- commons-beanutils -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils.version}</version>
+            <classifier>sources</classifier>
+            <type>java-source</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+
+        <!-- ================================================================= -->
+
+        <!--  html转md -->
+        <!--thymeleaf作为模板文件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--要求HTML格式必须为严格的html5格式，必须有结束标签，否则会报错！解决办法如下：并添加配置-->
+        <!--    <dependency>-->
+        <!--      <groupId>net.sourceforge.nekohtml</groupId>-->
+        <!--      <artifactId>nekohtml</artifactId>-->
+        <!--    </dependency>-->
+        <!--    <dependency>-->
+        <!--      <groupId>org.thymeleaf.extras</groupId>-->
+        <!--      <artifactId>thymeleaf-extras-springsecurity4</artifactId>-->
+        <!--    </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-java8time -->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-java8time</artifactId>
+        </dependency>
 
 
-    </plugins>
+        <!--   word文档 转 html文件 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>3.12</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>fr.opensagres.xdocreport.document</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>org.apache.poi.xwpf.converter.xhtml</artifactId>
+            <version>1.0.5</version>
+        </dependency>
 
-  </build>
+
+        <!--  md转html -->
+        <dependency>
+            <groupId>com.youbenzi</groupId>
+            <artifactId>MD2File</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+
+        <!--  aspose-words 文档操作工具包  -->
+        <!-- https://mvnrepository.com/artifact/com.aspose/aspose-words -->
+        <!--    <dependency>-->
+        <!--      <groupId>com.aspose</groupId>-->
+        <!--      <artifactId>aspose-words</artifactId>-->
+        <!--      <version>20.11</version>-->
+        <!--      <type>pom</type>-->
+        <!--    </dependency>-->
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words</artifactId>
+            <version>18.6</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aspose-words-18.6-jdk16.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-cells</artifactId>
+            <version>8.5.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/aspose-cells-8.5.2.jar</systemPath>
+        </dependency>
+
+        <!-- pdf 转 word -->
+        <dependency>
+            <groupId>e-iceblue</groupId>
+            <artifactId>spire.doc.free</artifactId>
+            <version>2.7.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/Spire.Doc.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>e-iceblue</groupId>
+            <artifactId>spire.pdf.free</artifactId>
+            <version>2.6.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/Spire.Pdf.jar</systemPath>
+        </dependency>
+
+        <!-- pdfbox：PDF转图片 -->
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.23</version>
+        </dependency>
+
+        <!-- core-renderer -->
+        <!-- https://mvnrepository.com/artifact/org.xhtmlrenderer/core-renderer -->
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>core-renderer</artifactId>
+            <version>R8</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <!--  <repositories>-->
+    <!--    <repository>-->
+    <!--      <id>AsposeJavaAPI</id>-->
+    <!--      <name>Aspose Java API</name>-->
+    <!--      <url>https://repository.aspose.com/repo/</url>-->
+    <!--    </repository>-->
+    <!--  </repositories>-->
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!--添加配置跳过测试-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <!--添加配置跳过测试-->
+
+
+        </plugins>
+
+    </build>
 
 
 </project>

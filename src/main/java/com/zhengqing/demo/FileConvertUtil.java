@@ -3,6 +3,7 @@ package com.zhengqing.demo;
 import com.zhengqing.demo.config.MatchLicense;
 import com.zhengqing.demo.doc2docx.Doc2DocxUtil;
 import com.zhengqing.demo.excel2pdf.Excel2PdfUtil;
+import com.zhengqing.demo.html2img.Html2ImgUtil;
 import com.zhengqing.demo.html2img.Html2PngUtil;
 import com.zhengqing.demo.html2pdf.Html2PdfUtil;
 import com.zhengqing.demo.html2word.Htm2WordUtil;
@@ -299,6 +300,18 @@ public class FileConvertUtil {
     public static List<File> htmlBytes2PngFileList(byte[] htmlBytes, String imgRootPath) {
         MatchLicense.init();
         return Html2PngUtil.htmlBytes2PngFileList(htmlBytes, imgRootPath);
+    }
+
+    /**
+     * `html` 转 `Jpg`
+     *
+     * @param htmlBytes html字节码
+     * @return 图片字节码数据
+     * @author zhengqingya
+     * @date 2021/8/11 9:28
+     */
+    public static byte[] htmlBytes2JpgBytes(byte[] htmlBytes) {
+        return Html2ImgUtil.htmlBytes2JpgBytes(htmlBytes);
     }
 
     /**
