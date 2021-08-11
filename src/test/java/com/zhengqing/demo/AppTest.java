@@ -6,6 +6,10 @@ import com.aspose.words.SaveFormat;
 import com.youbenzi.md2.export.FileFactory;
 import com.zhengqing.demo.config.Constants;
 import com.zhengqing.demo.util.MyFileUtil;
+import gui.ava.html.parser.HtmlParser;
+import gui.ava.html.parser.HtmlParserImpl;
+import gui.ava.html.renderer.ImageRenderer;
+import gui.ava.html.renderer.ImageRendererImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -98,6 +102,16 @@ public class AppTest {
         byte[] jpgBytes = FileConvertUtil.htmlBytes2JpgBytes(MyFileUtil.readBytes(HTML_FILE_PATH));
         File file = FileUtil.writeBytes(jpgBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.jpg");
         System.out.println(file.getName());
+    }
+
+    @Test
+    public void testHtml2PngBy2() throws Exception {
+        HtmlParser htmlParser = new HtmlParserImpl();
+        htmlParser.loadHtml(MyFileUtil.readFileContent(HTML_FILE_PATH));
+        ImageRenderer imageRenderer = new ImageRendererImpl(htmlParser);
+        String imgPath = Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.png";
+        MyFileUtil.touch(imgPath);
+        imageRenderer.saveImage(imgPath);
     }
 
     @Test

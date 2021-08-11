@@ -226,6 +226,12 @@
             <version>R8</version>
         </dependency>
 
+        <!-- html2image -->
+        <dependency>
+            <groupId>gui.ava</groupId>
+            <artifactId>html2image</artifactId>
+            <version>2.0.1</version>
+        </dependency>
 
     </dependencies>
 
