@@ -1,24 +1,23 @@
 package com.zhengqing.demo.util;
 
-import java.io.File;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-
-import org.apache.commons.io.FileUtils;
-
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ZipUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 
 /**
  * <p>
  * 文件工具类
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2020/8/27 19:21
+ * @author zhengqing
+ * @description
+ * @date 2020/8/27 19:21
  */
 @Slf4j
 public class MyFileUtil {
@@ -26,17 +25,13 @@ public class MyFileUtil {
     /**
      * 多文件或目录压缩：将`srcPath`目录以及其目录下的所有文件目录打包到`zipPath`+`suffixFileName`文件中 【采用hutool工具类进行打包文件】
      *
-     * @param srcPath:
-     *            需打包的源目录
-     * @param zipPath:
-     *            打包后的路径+文件后缀名
-     * @param isWithSrcDir:
-     *            是否带目录显示 （true:表示带目录显示）
-     * @param isDeleteSrcZip:
-     *            是否删除源目录
-     * @return: java.lang.String
-     * @author : zhengqing
-     * @date : 2020/8/27 19:25
+     * @param srcPath:        需打包的源目录
+     * @param zipPath:        打包后的路径+文件后缀名
+     * @param isWithSrcDir:   是否带目录显示 （true:表示带目录显示）
+     * @param isDeleteSrcZip: 是否删除源目录
+     * @return java.lang.String
+     * @author zhengqing
+     * @date 2020/8/27 19:25
      */
     public static File zip(String srcPath, String zipPath, boolean isWithSrcDir, boolean isDeleteSrcZip) {
         log.debug("【压缩文件】 源目录路径: 【{}】 打包后的路径+文件后缀名: 【{}】", srcPath, zipPath);
@@ -51,11 +46,10 @@ public class MyFileUtil {
     /**
      * 根据路径删除指定的目录或文件，无论存在与否
      *
-     * @param fullFileOrDirPath:
-     *            要删除的目录或文件
-     * @return: 删除成功返回 true，否则返回 false
-     * @author : zhengqing
-     * @date : 2020/9/5 20:56
+     * @param fullFileOrDirPath: 要删除的目录或文件
+     * @return 删除成功返回 true，否则返回 false
+     * @author zhengqing
+     * @date 2020/9/5 20:56
      */
     public static boolean deleteFileOrFolder(String fullFileOrDirPath) {
         return FileUtil.del(fullFileOrDirPath);
@@ -64,11 +58,10 @@ public class MyFileUtil {
     /**
      * 根据路径创建文件
      *
-     * @param fullFilePath:
-     *            文件生成路径
-     * @return: 文件信息
-     * @author : zhengqing
-     * @date : 2020/9/8 21:41
+     * @param fullFilePath: 文件生成路径
+     * @return 文件信息
+     * @author zhengqing
+     * @date 2020/9/8 21:41
      */
     public static File touch(String fullFilePath) {
         return FileUtil.touch(fullFilePath);
@@ -77,17 +70,13 @@ public class MyFileUtil {
     /**
      * 解压
      *
-     * @param inputStream:
-     *            流
-     * @param zipFilePath:
-     *            zip文件路径
-     * @param outFileDir:
-     *            解压后的目录路径
-     * @param isDeleteZip:
-     *            是否删除源zip文件
-     * @return: 解压后的文件File信息
-     * @author : zhengqing
-     * @date : 2020/9/5 20:50
+     * @param inputStream: 流
+     * @param zipFilePath: zip文件路径
+     * @param outFileDir:  解压后的目录路径
+     * @param isDeleteZip: 是否删除源zip文件
+     * @return 解压后的文件File信息
+     * @author zhengqing
+     * @date 2020/9/5 20:50
      */
     @SneakyThrows(Exception.class)
     public static File unzip(InputStream inputStream, String zipFilePath, String outFileDir, boolean isDeleteZip) {
@@ -108,11 +97,10 @@ public class MyFileUtil {
     /**
      * 读取文件内容
      *
-     * @param file:
-     *            文件数据
-     * @return: 文件内容
-     * @author : zhengqing
-     * @date : 2020/9/5 23:00
+     * @param file: 文件数据
+     * @return 文件内容
+     * @author zhengqing
+     * @date 2020/9/5 23:00
      */
     public static String readFileContent(File file) {
         return FileUtil.readUtf8String(file);
@@ -121,11 +109,10 @@ public class MyFileUtil {
     /**
      * 读取文件内容
      *
-     * @param filePath:
-     *            文件路径
-     * @return: 文件内容
-     * @author : zhengqing
-     * @date : 2020/9/5 23:00
+     * @param filePath: 文件路径
+     * @return 文件内容
+     * @author zhengqing
+     * @date 2020/9/5 23:00
      */
     public static String readFileContent(String filePath) {
         return FileUtil.readUtf8String(filePath);
@@ -134,11 +121,10 @@ public class MyFileUtil {
     /**
      * 读取文件数据
      *
-     * @param filePath:
-     *            文件路径
-     * @return: 文件字节码
-     * @author : zhengqing
-     * @date : 2020/9/5 23:00
+     * @param filePath: 文件路径
+     * @return 文件字节码
+     * @author zhengqing
+     * @date 2020/9/5 23:00
      */
     public static byte[] readBytes(String filePath) {
         return FileUtil.readBytes(filePath);
@@ -147,13 +133,11 @@ public class MyFileUtil {
     /**
      * 写入文件内容
      *
-     * @param fileContent:
-     *            文件内容
-     * @param filePath:
-     *            文件路径
-     * @return: 文件信息
-     * @author : zhengqing
-     * @date : 2020/11/17 21:38
+     * @param fileContent: 文件内容
+     * @param filePath:    文件路径
+     * @return 文件信息
+     * @author zhengqing
+     * @date 2020/11/17 21:38
      */
     @SneakyThrows(Exception.class)
     public static File writeFileContent(String fileContent, String filePath) {
@@ -163,13 +147,11 @@ public class MyFileUtil {
     /**
      * 字节码写入文件
      *
-     * @param data:
-     *            字节码
-     * @param filePath:
-     *            文件路径
-     * @return: 文件信息
-     * @author : zhengqing
-     * @date : 2020/11/24 14:36
+     * @param data:     字节码
+     * @param filePath: 文件路径
+     * @return 文件信息
+     * @author zhengqing
+     * @date 2020/11/24 14:36
      */
     @SneakyThrows(Exception.class)
     public static File writeFileContent(byte[] data, String filePath) {

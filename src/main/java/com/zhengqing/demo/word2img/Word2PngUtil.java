@@ -1,26 +1,25 @@
 package com.zhengqing.demo.word2img;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.util.List;
-
 import com.aspose.words.Document;
 import com.aspose.words.ImageSaveOptions;
 import com.aspose.words.SaveFormat;
 import com.google.common.collect.Lists;
-
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.List;
 
 /**
  * <p>
  * Word 转 PNG 工具类
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2020/11/23 16:00
+ * @author zhengqing
+ * @description
+ * @date 2020/11/23 16:00
  */
 @Slf4j
 public class Word2PngUtil {
@@ -28,11 +27,10 @@ public class Word2PngUtil {
     /**
      * `word` 转 `png`
      *
-     * @param wordBytes:
-     *            word字节码数据
-     * @return: 图片字节码数据列表
-     * @author : zhengqing
-     * @date : 2020/11/24 11:52
+     * @param wordBytes: word字节码数据
+     * @return 图片字节码数据列表
+     * @author zhengqing
+     * @date 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
     public static List<byte[]> wordBytes2PngBytes(byte[] wordBytes) {
@@ -56,13 +54,11 @@ public class Word2PngUtil {
     /**
      * `word` 转 `png`
      *
-     * @param wordBytes:
-     *            word字节码数据
-     * @param imgRootPath:
-     *            生成图片路径
-     * @return: 图片文件数据列表
-     * @author : zhengqing
-     * @date : 2020/11/24 11:52
+     * @param wordBytes:   word字节码数据
+     * @param imgRootPath: 生成图片路径
+     * @return 图片文件数据列表
+     * @author zhengqing
+     * @date 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
     public static List<File> wordBytes2PngFileList(byte[] wordBytes, String imgRootPath) {

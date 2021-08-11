@@ -1,23 +1,21 @@
 package com.zhengqing.demo.config;
 
-import java.io.InputStream;
-
+import com.aspose.words.License;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import com.aspose.words.License;
-
-import lombok.extern.slf4j.Slf4j;
+import java.io.InputStream;
 
 /**
  * <p>
  * 服务初始化之后，执行方法
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2020/5/22 19:29
+ * @author zhengqing
+ * @description
+ * @date 2020/5/22 19:29
  */
 @Slf4j
 @Component

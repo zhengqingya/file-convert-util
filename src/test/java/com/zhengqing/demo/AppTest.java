@@ -1,27 +1,26 @@
 package com.zhengqing.demo;
 
-import java.io.File;
-import java.util.List;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import com.aspose.words.Document;
 import com.aspose.words.SaveFormat;
 import com.youbenzi.md2.export.FileFactory;
 import com.zhengqing.demo.config.Constants;
 import com.zhengqing.demo.util.MyFileUtil;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * <p>
  * 小测试$
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2020/7/10$ 11:02$
+ * @author zhengqing
+ * @description
+ * @date 2020/7/10$ 11:02$
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -50,14 +49,14 @@ public class AppTest {
     @Test
     public void testWord2Html() throws Exception {
         File htmlFile = FileConvertUtil.wordBytes2HtmlFile(MyFileUtil.readBytes(WORD_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.html");
+                Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.html");
         System.out.println(htmlFile);
     }
 
     @Test
     public void testWord2Pdf() throws Exception {
         File pdfFile = FileConvertUtil.wordBytes2PdfFile(MyFileUtil.readBytes(WORD_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-word.pdf");
+                Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-word.pdf");
         System.out.println(pdfFile);
     }
 
@@ -65,7 +64,7 @@ public class AppTest {
     public void testWord2Jpg() throws Exception {
         byte[] wordFileBytes = MyFileUtil.readBytes(WORD_FILE_PATH);
         List<File> jpgFileList =
-            FileConvertUtil.wordBytes2JpegFileList(wordFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
+                FileConvertUtil.wordBytes2JpegFileList(wordFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
         System.out.println(jpgFileList);
     }
 
@@ -73,35 +72,35 @@ public class AppTest {
     public void testWord2Png() throws Exception {
         byte[] wordFileBytes = MyFileUtil.readBytes(WORD_FILE_PATH);
         List<File> pngFileList =
-            FileConvertUtil.wordBytes2PngFileList(wordFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
+                FileConvertUtil.wordBytes2PngFileList(wordFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
         System.out.println(pngFileList);
     }
 
     @Test
     public void testHtml2Word() throws Exception {
         File wordFile = FileConvertUtil.htmlBytes2WordFile(MyFileUtil.readBytes(HTML_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.doc");
+                Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.doc");
         System.out.println(wordFile);
     }
 
     @Test
     public void testHtml2Pdf() throws Exception {
         File pdfFile = FileConvertUtil.htmlBytes2PdfFile(MyFileUtil.readBytes(HTML_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-html.pdf");
+                Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-html.pdf");
         System.out.println(pdfFile);
     }
 
     @Test
     public void testDoc2Docx() throws Exception {
         File docxFile = FileConvertUtil.docBytes2DocxFile(MyFileUtil.readBytes(WORD_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.docx");
+                Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test.docx");
         System.out.println(docxFile);
     }
 
     @Test
     public void testExcel2Pdf() throws Exception {
         File pdfFile = FileConvertUtil.excelBytes2PdfFile(MyFileUtil.readBytes(EXCEL_FILE_PATH),
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-excel.pdf");
+                Constants.DEFAULT_FOLDER_TMP_GENERATE + "/test-excel.pdf");
         System.out.println(pdfFile);
     }
 
@@ -109,7 +108,7 @@ public class AppTest {
     public void testHtml2Png() throws Exception {
         byte[] htmlFileBytes = MyFileUtil.readBytes(HTML_FILE_PATH);
         List<File> pngFileList =
-            FileConvertUtil.wordBytes2PngFileList(htmlFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
+                FileConvertUtil.wordBytes2PngFileList(htmlFileBytes, Constants.DEFAULT_FOLDER_TMP_GENERATE);
         System.out.println(pngFileList);
     }
 

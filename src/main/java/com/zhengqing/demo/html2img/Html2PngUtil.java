@@ -1,26 +1,25 @@
 package com.zhengqing.demo.html2img;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.util.List;
-
 import com.aspose.words.Document;
 import com.aspose.words.ImageSaveOptions;
 import com.aspose.words.SaveFormat;
 import com.google.common.collect.Lists;
-
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.List;
 
 /**
  * <p>
  * html 转 png 工具类
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2020/11/25 17:16
+ * @author zhengqing
+ * @description
+ * @date 2020/11/25 17:16
  */
 @Slf4j
 public class Html2PngUtil {
@@ -28,11 +27,10 @@ public class Html2PngUtil {
     /**
      * `html` 转 `png`
      *
-     * @param htmlBytes:
-     *            html字节码
-     * @return: 图片字节码数据列表
-     * @author : zhengqing
-     * @date : 2020/11/25 17:17
+     * @param htmlBytes: html字节码
+     * @return 图片字节码数据列表
+     * @author zhengqing
+     * @date 2020/11/25 17:17
      */
     @SneakyThrows(Exception.class)
     public static List<byte[]> htmlBytes2PngBytes(byte[] htmlBytes) {
@@ -54,13 +52,11 @@ public class Html2PngUtil {
     /**
      * `html` 转 `png`
      *
-     * @param htmlBytes:
-     *            html字节码
-     * @param imgRootPath:
-     *            需转换的`png`文件路径
-     * @return: 图片文件数据列表
-     * @author : zhengqing
-     * @date : 2020/11/25 17:17
+     * @param htmlBytes:   html字节码
+     * @param imgRootPath: 需转换的`png`文件路径
+     * @return 图片文件数据列表
+     * @author zhengqing
+     * @date 2020/11/25 17:17
      */
     @SneakyThrows(Exception.class)
     public static List<File> htmlBytes2PngFileList(byte[] htmlBytes, String imgRootPath) {

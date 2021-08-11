@@ -1,21 +1,10 @@
 package com.zhengqing.demo.word2html;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.util.List;
-import java.util.UUID;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
+import com.aspose.words.SaveFormat;
+import com.zhengqing.demo.config.Constants;
+import com.zhengqing.demo.util.MyFileUtil;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.converter.PicturesManager;
 import org.apache.poi.hwpf.converter.WordToHtmlConverter;
@@ -29,21 +18,24 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.util.CollectionUtils;
 import org.w3c.dom.Document;
 
-import com.aspose.words.SaveFormat;
-import com.zhengqing.demo.config.Constants;
-import com.zhengqing.demo.util.MyFileUtil;
-
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.*;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * <p>
  * Word 转 Html 工具类
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2020/7/29 20:43
+ * @author zhengqing
+ * @description
+ * @date 2020/7/29 20:43
  */
 @Slf4j
 public class Word2HtmlUtil {
@@ -51,17 +43,16 @@ public class Word2HtmlUtil {
     /**
      * `word` 转 `html`
      *
-     * @param wordBytes:
-     *            word字节码
-     * @return: html文件字节码数据
-     * @author : zhengqing
-     * @date : 2020/11/24 11:52
+     * @param wordBytes: word字节码
+     * @return html文件字节码数据
+     * @author zhengqing
+     * @date 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
     public static byte[] wordBytes2HtmlBytes(byte[] wordBytes) {
         // 创建临时word转html后生成的html文件
         String tmpHtmlFilePath =
-            Constants.DEFAULT_FOLDER_TMP_GENERATE + "/" + System.currentTimeMillis() + "-" + getUUID32() + ".html";
+                Constants.DEFAULT_FOLDER_TMP_GENERATE + "/" + System.currentTimeMillis() + "-" + getUUID32() + ".html";
         com.aspose.words.Document doc = new com.aspose.words.Document(new ByteArrayInputStream(wordBytes));
         doc.save(tmpHtmlFilePath, SaveFormat.HTML);
         byte[] htmlBytes = MyFileUtil.readBytes(tmpHtmlFilePath);
@@ -73,13 +64,11 @@ public class Word2HtmlUtil {
     /**
      * `word` 转 `html`
      *
-     * @param wordBytes:
-     *            word字节码
-     * @param htmlFilePath:
-     *            html文件路径
-     * @return: html文件数据
-     * @author : zhengqing
-     * @date : 2020/11/24 11:52
+     * @param wordBytes:    word字节码
+     * @param htmlFilePath: html文件路径
+     * @return html文件数据
+     * @author zhengqing
+     * @date 2020/11/24 11:52
      */
     @SneakyThrows(Exception.class)
     public static File wordBytes2HtmlFile(byte[] wordBytes, String htmlFilePath) {
@@ -93,9 +82,9 @@ public class Word2HtmlUtil {
     /**
      * 获取32位的uuid
      *
-     * @return: java.lang.String
-     * @author : zhengqing
-     * @date : 2020/11/25 13:55
+     * @return java.lang.String
+     * @author zhengqing
+     * @date 2020/11/25 13:55
      */
     private static String getUUID32() {
         return UUID.randomUUID().toString().replace("-", "").toLowerCase();
@@ -106,14 +95,11 @@ public class Word2HtmlUtil {
     /**
      * word2003-2007转换成html 【 支持 .doc and .docx 】
      *
-     * @param fileRootPath:
-     *            文件根位置
-     * @param wordFileName:
-     *            需转换的word文件名
-     * @param imagePath:
-     *            图片存放路径
-     * @return: 返回html内容
-     * @date : 2020/7/29 20:48
+     * @param fileRootPath: 文件根位置
+     * @param wordFileName: 需转换的word文件名
+     * @param imagePath:    图片存放路径
+     * @return 返回html内容
+     * @date 2020/7/29 20:48
      */
     @SneakyThrows(Exception.class)
     public static String word2Html(String fileRootPath, String wordFileName, String imagePath) {
@@ -156,13 +142,13 @@ public class Word2HtmlUtil {
             // WordToHtmlUtils.loadDoc(new FileInputStream(inputFile));
             HWPFDocument wordDocument = new HWPFDocument(new FileInputStream(wordFilePath));
             WordToHtmlConverter wordToHtmlConverter =
-                new WordToHtmlConverter(DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument());
+                    new WordToHtmlConverter(DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument());
 
             // 设置图片存储位置，并保存
             wordToHtmlConverter.setPicturesManager(new PicturesManager() {
                 @SneakyThrows(Exception.class)
                 public String savePicture(byte[] content, PictureType pictureType, String suggestedName,
-                    float widthInches, float heightInches) {
+                                          float widthInches, float heightInches) {
                     // 首先要判断图片是否能识别
                     if (pictureType.equals(PictureType.UNKNOWN)) {
                         return "";
@@ -213,15 +199,12 @@ public class Word2HtmlUtil {
     /**
      * `word` 转 `html`
      *
-     * @param fileRootPath:
-     *            文件根位置
-     * @param wordFileName:
-     *            需转换的word文件名
-     * @param htmlFileName:
-     *            最后生成后的html文件名
-     * @return: 生成的html文件信息
-     * @author : zhengqing
-     * @date : 2020/11/23 16:21
+     * @param fileRootPath: 文件根位置
+     * @param wordFileName: 需转换的word文件名
+     * @param htmlFileName: 最后生成后的html文件名
+     * @return 生成的html文件信息
+     * @author zhengqing
+     * @date 2020/11/23 16:21
      */
     public static File word2HtmlFile(String fileRootPath, String wordFileName, String htmlFileName) {
         final String htmlFilePath = fileRootPath + "/" + htmlFileName;
@@ -236,15 +219,12 @@ public class Word2HtmlUtil {
     /**
      * `word` 转 `html`
      *
-     * @param fileRootPath:
-     *            文件根位置
-     * @param wordFileName:
-     *            需转换的word文件名
-     * @param htmlFileName:
-     *            最后生成后的html文件名
-     * @return: 生成的html文件信息
-     * @author : zhengqing
-     * @date : 2020/11/23 16:21
+     * @param fileRootPath: 文件根位置
+     * @param wordFileName: 需转换的word文件名
+     * @param htmlFileName: 最后生成后的html文件名
+     * @return 生成的html文件信息
+     * @author zhengqing
+     * @date 2020/11/23 16:21
      */
     public static String word2HtmlContent(String fileRootPath, String wordFileName, String htmlFileName) {
         final String imagePath = fileRootPath + "/image";

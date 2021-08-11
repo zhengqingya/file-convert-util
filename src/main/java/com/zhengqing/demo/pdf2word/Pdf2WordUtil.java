@@ -14,9 +14,9 @@ import lombok.extern.slf4j.Slf4j;
  * Pdf 转 Word 工具类
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2021/1/28 9:33
+ * @author zhengqing
+ * @description
+ * @date 2021/1/28 9:33
  */
 @Slf4j
 public class Pdf2WordUtil {

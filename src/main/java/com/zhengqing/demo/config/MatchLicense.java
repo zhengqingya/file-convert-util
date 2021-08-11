@@ -1,21 +1,19 @@
 package com.zhengqing.demo.config;
 
-import java.io.InputStream;
-
+import com.aspose.words.License;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 
-import com.aspose.words.License;
-
-import lombok.extern.slf4j.Slf4j;
+import java.io.InputStream;
 
 /**
  * <p>
  * `aspose-words`授权处理
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2020/12/30$ 11:33$
+ * @author zhengqing
+ * @description
+ * @date 2020/12/30$ 11:33$
  */
 @Slf4j
 public class MatchLicense {

@@ -5,9 +5,9 @@ package com.zhengqing.demo.config;
  * 全局常用变量
  * </p>
  *
- * @author : zhengqing
- * @description :
- * @date : 2019/10/12 14:47
+ * @author zhengqing
+ * @description
+ * @date 2019/10/12 14:47
  */
 public class Constants {
 
