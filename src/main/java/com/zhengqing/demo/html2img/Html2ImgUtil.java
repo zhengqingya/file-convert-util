@@ -25,7 +25,7 @@ import java.io.ByteArrayOutputStream;
 public class Html2ImgUtil {
 
     /**
-     * `html` 转 `jpg` (注：暂不支持复杂html，如表格)
+     * `html` 转 `jpg` (注：宽高注意设置，否则图片显示内容不完整)
      *
      * @param htmlBytes: html字节码
      * @return 图片字节码数据
