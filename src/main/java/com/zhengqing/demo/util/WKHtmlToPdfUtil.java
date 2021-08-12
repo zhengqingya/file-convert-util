@@ -23,7 +23,7 @@ public class WKHtmlToPdfUtil {
     /**
      * 工具根目录
      */
-    private static final String TOOL_ROOT_DIRECTORY = "D:/zhengqingya/soft/soft-dev/wkhtmltopdf/bin/";
+    private static final String TOOL_WIN_ROOT_DIRECTORY = "D:/zhengqingya/soft/soft-dev/wkhtmltopdf/bin/";
 
     public static void main(String[] args) throws Exception {
         String sourceFilePath = "https://zhengqing.blog.csdn.net";
@@ -96,7 +96,7 @@ public class WKHtmlToPdfUtil {
     private static String getToolRootPath() {
         String system = System.getProperty("os.name");
         if (system.contains("Windows")) {
-            return TOOL_ROOT_DIRECTORY;
+            return TOOL_WIN_ROOT_DIRECTORY;
         } else if (system.contains("Linux") || system.contains("Mac OS X")) {
             return "";
         }
