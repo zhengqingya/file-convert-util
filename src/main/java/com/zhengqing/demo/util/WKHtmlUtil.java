@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
- * wkhtmltopdf 工具
+ * html 转 图片或pdf 工具类
  * </p>
  *
  * @author zhengqingya
@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2021/8/11 9:54 下午
  */
 @Slf4j
-public class WKHtmlToPdfUtil {
+public class WKHtmlUtil {
 
     /**
      * 工具根目录
