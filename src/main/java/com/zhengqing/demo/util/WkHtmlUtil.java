@@ -5,6 +5,8 @@ import com.zhengqing.demo.config.Constants;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
+
 /**
  * <p>
  * html 转 图片或pdf 工具类
@@ -31,8 +33,6 @@ public class WkHtmlUtil {
         String targetPdfFilePath = Constants.DEFAULT_FOLDER_TMP_GENERATE + "/zhengqingya.pdf";
         // 设置宽高
         String cmdByImage = "--crop-w 150 --crop-h 150 --quality 100";
-        // 先创建父目录
-        FileUtil.mkParentDirs(targetPngFilePath);
         byte[] imageBytes = html2ImageBytes(cmdByImage, sourceFilePath, targetPngFilePath);
         byte[] pdfBytes = html2PdfBytes("", sourceFilePath, targetPdfFilePath);
     }
@@ -78,8 +78,15 @@ public class WkHtmlUtil {
      */
     @SneakyThrows({Exception.class})
     private static byte[] baseTool(String tool, String cmd, String sourceFilePath, String targetFilePath) {
+        // 先创建父目录
+        FileUtil.mkParentDirs(targetFilePath);
         String command = String.format("%s %s %s %s", getToolRootPath() + tool, cmd, sourceFilePath, targetFilePath);
-        Process process = Runtime.getRuntime().exec(command);
+        Process process = null;
+        try {
+            process = Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            throw new Exception("工具丢失，请联系系统管理员！");
+        }
         // 等待当前命令执行完，再往下执行
         process.waitFor();
         log.info("=============== FINISH: [{}] ===============", command);
