@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2021/8/11 9:54 下午
  */
 @Slf4j
-public class WKHtmlUtil {
+public class WkHtmlUtil {
 
     /**
      * 工具根目录
