@@ -4,6 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import com.zhengqing.demo.config.Constants;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 
 import java.io.IOException;
 
@@ -33,7 +34,8 @@ public class WkHtmlUtil {
         String targetPdfFilePath = Constants.DEFAULT_FOLDER_TMP_GENERATE + "/zhengqingya.pdf";
         // 设置宽高
         String cmdByImage = "--crop-w 150 --crop-h 150 --quality 100";
-        byte[] imageBytes = html2ImageBytes(cmdByImage, sourceFilePath, targetPngFilePath);
+//        byte[] imageBytes = html2ImageBytes(cmdByImage, sourceFilePath, targetPngFilePath);
+        byte[] imageBytesByCompress = html2ImageBytesByCompress(cmdByImage, sourceFilePath, targetPngFilePath);
         byte[] pdfBytes = html2PdfBytes("", sourceFilePath, targetPdfFilePath);
     }
 
@@ -49,6 +51,25 @@ public class WkHtmlUtil {
      */
     public static byte[] html2ImageBytes(String cmd, String sourceFilePath, String targetFilePath) {
         return baseTool("wkhtmltoimage", cmd, sourceFilePath, targetFilePath);
+    }
+
+    /**
+     * html转图片 - 图片压缩版
+     *
+     * @param cmd            工具操作指令
+     * @param sourceFilePath html源资源
+     * @param targetFilePath 生成目标资源
+     * @return 图片字节码
+     * @author zhengqingya
+     * @date 2021/8/12 11:09
+     */
+    @SneakyThrows(Exception.class)
+    public static byte[] html2ImageBytesByCompress(String cmd, String sourceFilePath, String targetFilePath) {
+        String filePath = baseToolForPath("wkhtmltoimage", cmd, sourceFilePath, targetFilePath);
+        Thumbnails.of(filePath)
+                .scale(1f)
+                .toFile(targetFilePath);
+        return FileUtil.readBytes(targetFilePath);
     }
 
     /**
@@ -78,6 +99,23 @@ public class WkHtmlUtil {
      */
     @SneakyThrows({Exception.class})
     private static byte[] baseTool(String tool, String cmd, String sourceFilePath, String targetFilePath) {
+        String filePath = baseToolForPath(tool, cmd, sourceFilePath, targetFilePath);
+        return FileUtil.readBytes(filePath);
+    }
+
+    /**
+     * 工具基础操作
+     *
+     * @param tool           工具
+     * @param cmd            工具操作指令
+     * @param sourceFilePath html源资源
+     * @param targetFilePath 生成目标资源
+     * @return 生成资源路径
+     * @author zhengqingya
+     * @date 2021/8/12 11:08
+     */
+    @SneakyThrows({Exception.class})
+    private static String baseToolForPath(String tool, String cmd, String sourceFilePath, String targetFilePath) {
         // 先创建父目录
         FileUtil.mkParentDirs(targetFilePath);
         String command = String.format("%s %s %s %s", getToolRootPath() + tool, cmd, sourceFilePath, targetFilePath);
@@ -90,7 +128,7 @@ public class WkHtmlUtil {
         // 等待当前命令执行完，再往下执行
         process.waitFor();
         log.info("=============== FINISH: [{}] ===============", command);
-        return FileUtil.readBytes(targetFilePath);
+        return targetFilePath;
     }
 
     /**

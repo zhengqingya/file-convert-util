@@ -233,6 +233,13 @@
             <version>2.0.1</version>
         </dependency>
 
+        <!-- thumbnailator: 图片压缩工具 -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
+        </dependency>
+
     </dependencies>
 
     <!--  <repositories>-->
